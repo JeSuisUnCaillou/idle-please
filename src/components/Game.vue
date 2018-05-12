@@ -44,6 +44,7 @@ export default {
       steps: {
         0: () => { this.visibleElapsedTime = true },
         1: () => { this.taunt('Got nothing else to do, eh ?') },
+        2: () => { this.visibleLevels = true },
         3: () => { this.visibleDots = true; this.taunt('Here, have some animated dots.') },
         default: () => { this.taunt('LOL') }
       }
