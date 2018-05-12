@@ -10,7 +10,9 @@
     </div>
     <div class="center-bar">
       <div>
+        <span class="dots-compensator" v-if="visibleDots"></span>
         Wait for <duration :amount="cooldown"></duration>
+        <animated-dots nbDots="4" v-if="visibleDots"></animated-dots>
       </div>
     </div>
     <div class="bottom-bar">
@@ -26,9 +28,10 @@
 <script>
 import FadingMessage from './FadingMessage.vue'
 import Duration from './Duration.vue'
+import AnimatedDots from './AnimatedDots.vue'
 export default {
   name: 'game',
-  components: { FadingMessage, Duration },
+  components: { FadingMessage, Duration, AnimatedDots },
   data () {
     return {
       elapsedTime: 0,
@@ -36,7 +39,8 @@ export default {
       tauntMessage: '',
       visibleElapsedTime: false,
       visibleLevels: false,
-      visibleTaunt: false
+      visibleTaunt: false,
+      visibleDots: false
     }
   },
   computed: {
@@ -66,6 +70,10 @@ export default {
             break
           case 2:
             this.visibleLevels = true
+            break
+          case 3:
+            this.visibleDots = true
+            this.taunt('Here, have some animated dots.')
             break
           default:
             this.taunt('LOL')
@@ -111,5 +119,11 @@ export default {
   margin-top: 10px;
   text-align: center;
   /* color: #dfe9f3; */
+}
+.dots-compensator {
+  width: 3em;
+  width: 1em;
+  height: 1em;
+  float: left;
 }
 </style>
