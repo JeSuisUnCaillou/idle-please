@@ -125,7 +125,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  padding: 10px;
+  padding: 15px;
 }
 .dual-container {
   display: flex;
@@ -163,9 +163,9 @@ export default {
   font-size: 1.5em;
 }
 .fa-hourglass-end {
-  margin-left: 10px;
+  margin-left: 5px;
 }
 .fa-hourglass-start {
-  margin-right: 10px;
+  margin-right: 5px;
 }
 </style>
