@@ -58,6 +58,7 @@ export default {
         2: () => { this.visibleLevels = true; this.taunt('You\'re level 4 now, well played !') },
         3: () => { this.visibleNextDuration = true; this.taunt('You can now see the duration of the next level') },
         4: () => { this.visibleDots = true; this.taunt('Here, have some animated dots') },
+        5: () => { this.taunt('Are you entertained ?') },
         default: () => { this.taunt('LOL, you\'re still here ?') }
       }
     }
