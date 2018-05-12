@@ -3,7 +3,7 @@
     <div class="top-bar">
       <div class="dual-container">
         <fading-message duration="-1" v-bind:trigger="visibleElapsedTime">
-          <div class="bigger">Total time wasted</div>
+          <div class="bigger">Time wasted</div>
           <i class="fas fa-hourglass-end"></i>
           <duration :amount="elapsedTime"></duration>
         </fading-message>
