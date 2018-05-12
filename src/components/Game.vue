@@ -22,7 +22,7 @@
       <div class="even-bigger">
         <!-- <span class="dots-compensator" v-if="visibleDots"></span> -->
         <animated-dots nbDots="4" v-bind:invisibleDots="!visibleDots" v-bind:invisibleReverseDots="!visibleReverseDots">
-           Wait for <duration :amount="cooldown"></duration>
+           Wait for <duration :amount="cooldown" fallback="it"></duration>
         </animated-dots>
       </div>
     </div>
@@ -45,6 +45,7 @@ export default {
   components: { FadingMessage, Duration, AnimatedDots },
   data () {
     return {
+      developerMode: false,
       elapsedTime: 0,
       step: 0,
       tauntMessage: '',
@@ -55,13 +56,14 @@ export default {
       visibleReverseDots: false,
       visibleNextDuration: false,
       steps: {
-        0: () => { this.taunt('Congrats ! You just waited 5 seconds') },
-        1: () => { this.visibleElapsedTime = true; this.taunt('Got nothing else to do, eh ?') },
-        2: () => { this.visibleLevels = true; this.taunt('You\'re level 4 now, well played !') },
-        3: () => { this.visibleNextDuration = true; this.taunt('You can now see the duration of the current level') },
-        4: () => { this.visibleDots = true; this.taunt('Here, have some animated dots') },
-        5: () => { this.taunt('Are you entertained ?') },
-        6: () => { this.visibleReverseDots = true; this.taunt('I can also do REVERSE DOTS ! Wow O_O') },
+        0: () => { /*this.taunt('It\'s gonna be good')*/ },
+        1: () => { this.taunt('Congrats ! You just wasted 5 seconds') },
+        2: () => { this.visibleElapsedTime = true; this.taunt('Got nothing else to do, eh ?') },
+        3: () => { this.visibleLevels = true; this.taunt('You\'re level 4 now, well played !') },
+        4: () => { this.visibleNextDuration = true; this.taunt('You can now see the duration of the current level') },
+        5: () => { this.visibleDots = true; this.taunt('Here, have some animated dots') },
+        6: () => { this.taunt('Are you entertained ?') },
+        7: () => { this.visibleReverseDots = true; this.taunt('I can also do REVERSE DOTS ! Wow O_O') },
         default: () => { this.taunt('LOL, you\'re still here ?') }
       }
     }
@@ -77,12 +79,17 @@ export default {
   methods: {
     totalAmountToWait (givenStep) {
       if (givenStep < 0) {
-        return 5
+        return 0
       } else {
-        return 5 + 5 * givenStep * givenStep
+        if (this.developerMode) {
+          return 5 * givenStep
+        } else {
+          return 5 * givenStep * givenStep
+        }
       }
     },
     countDown () {
+      this.computeGame()
       setInterval(() => {
         this.elapsedTime++
         this.computeGame()

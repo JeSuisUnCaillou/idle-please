@@ -1,36 +1,41 @@
 <template>
   <span>
-    <span v-if="days > 0">
-      <span class="highlight">
-        {{days}}
+    <span v-if="amount > 0">
+      <span v-if="days > 0">
+        <span class="highlight">
+          {{days}}
+        </span>
+        <span>
+          {{days > 1 ? 'days' : 'day'}}
+        </span>
       </span>
-      <span>
-        {{days > 1 ? 'days' : 'day'}}
+      <span v-if="hours > 0">
+        <span class="highlight">
+          {{hours}}
+        </span>
+        <span>
+          {{hours > 1 ? 'hours' : 'hour'}}
+        </span>
+      </span>
+      <span v-if="minutes > 0">
+        <span class="highlight">
+          {{minutes}}
+        </span>
+        <span>
+          min
+        </span>
+      </span>
+      <span v-if="seconds > 0">
+        <span class="highlight">
+          {{seconds}}
+        </span>
+        <span>
+          s
+        </span>
       </span>
     </span>
-    <span v-if="hours > 0">
-      <span class="highlight">
-        {{hours}}
-      </span>
-      <span>
-        {{hours > 1 ? 'hours' : 'hour'}}
-      </span>
-    </span>
-    <span v-if="minutes > 0">
-      <span class="highlight">
-        {{minutes}}
-      </span>
-      <span>
-        min
-      </span>
-    </span>
-    <span v-if="seconds > 0">
-      <span class="highlight">
-        {{seconds}}
-      </span>
-      <span>
-        s
-      </span>
+    <span v-else>
+      {{fallback}}
     </span>
   </span>
 </template>
@@ -38,7 +43,7 @@
 <script>
 export default {
   name: 'duration',
-  props: ['amount'],
+  props: ['amount', 'fallback'],
   computed: {
     days () {
       return Math.floor(this.amount / (3600 * 24))
