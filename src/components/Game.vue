@@ -4,6 +4,9 @@
       <fading-message duration="-1" v-bind:trigger="visibleElapsedTime">
         <duration :amount="elapsedTime"></duration> wasted
       </fading-message>
+      <fading-message duration="-1" v-bind:trigger="visibleLevels">
+        Level <span class="highlight">{{step+1}}</span>
+      </fading-message>
     </div>
     <div class="center-bar">
       <div>
@@ -32,6 +35,7 @@ export default {
       step: 0,
       tauntMessage: '',
       visibleElapsedTime: false,
+      visibleLevels: false,
       visibleTaunt: false
     }
   },
@@ -59,6 +63,9 @@ export default {
             break
           case 1:
             this.taunt('Got nothing else to do, eh ?')
+            break
+          case 2:
+            this.visibleLevels = true
             break
           default:
             this.taunt('LOL')
@@ -90,8 +97,11 @@ export default {
 .top-bar {
   width: 100%;
 }
+.top-bar * {
+  margin-bottom: 5px;
+}
 .top-bar, .bottom-bar {
-  height: 2em;
+  height: 10em;
   width: 100%;
 }
 .center-bar {
