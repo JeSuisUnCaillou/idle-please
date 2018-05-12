@@ -4,7 +4,7 @@
       <fading-message duration="-1" v-bind:trigger="visibleElapsedTime">
         <duration :amount="elapsedTime"></duration> wasted
       </fading-message>
-      <fading-message duration="-1" v-bind:trigger="visibleLevels">
+      <fading-message duration="-1" v-bind:trigger="visibleLevels" class="text-right">
         Level <span class="highlight">{{step+1}}</span>
       </fading-message>
     </div>
@@ -103,7 +103,8 @@ export default {
   padding: 10px;
 }
 .top-bar {
-  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 .top-bar * {
   margin-bottom: 5px;
@@ -125,5 +126,8 @@ export default {
   width: 1em;
   height: 1em;
   float: left;
+}
+.text-right {
+  text-align: right;
 }
 </style>
