@@ -21,7 +21,7 @@
     <div class="center-bar">
       <div class="even-bigger">
         <!-- <span class="dots-compensator" v-if="visibleDots"></span> -->
-        <animated-dots nbDots="4" v-bind:invisibleDots="!visibleDots" v-bind:invisibleReverseDots="!visibleReverseDots">
+        <animated-dots nbDots="3" v-bind:invisibleDots="!visibleDots" v-bind:invisibleReverseDots="!visibleReverseDots">
            Wait for <duration :amount="cooldown" fallback="it"></duration>
         </animated-dots>
       </div>
