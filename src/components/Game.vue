@@ -61,7 +61,7 @@ export default {
         3: () => { this.visibleNextDuration = true; this.taunt('You can now see the duration of the current level') },
         4: () => { this.visibleDots = true; this.taunt('Here, have some animated dots') },
         5: () => { this.taunt('Are you entertained ?') },
-        6: () => {this.visibleReverseDots = true; this.taunt('I can also do REVERSE DOTS ! Wow O_O')},
+        6: () => { this.visibleReverseDots = true; this.taunt('I can also do REVERSE DOTS ! Wow O_O') },
         default: () => { this.taunt('LOL, you\'re still here ?') }
       }
     }
