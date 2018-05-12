@@ -21,9 +21,9 @@
     <div class="center-bar">
       <div class="even-bigger">
         <!-- <span class="dots-compensator" v-if="visibleDots"></span> -->
-        <animated-dots nbDots="4" v-if="visibleDots" v-bind:invisible="!visibleReverseDots"></animated-dots>
-        Wait for <duration :amount="cooldown"></duration>
-        <animated-dots nbDots="4" v-if="visibleDots"></animated-dots>
+        <animated-dots nbDots="4" v-bind:invisibleDots="!visibleDots" v-bind:invisibleReverseDots="!visibleReverseDots">
+           Wait for <duration :amount="cooldown"></duration>
+        </animated-dots>
       </div>
     </div>
     <div class="bottom-bar">
@@ -89,7 +89,7 @@ export default {
       }, 1000)
     },
     computeGame () {
-      if (this.cooldown === 0) {
+      if (this.cooldown <= 0) {
         let stepMethod = this.steps[this.step]
         if (stepMethod) {
           stepMethod()

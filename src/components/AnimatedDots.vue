@@ -1,13 +1,19 @@
 <template>
-  <span class="dots" v-bind:class="{ invisible: invisible }">
-    {{dots}}
+  <span>
+    <span class="withDots">
+      <span v-if="!invisibleDots" v-bind:class="{ invisible: invisibleReverseDots }">{{dots}}</span>
+      <slot class="slot"></slot>
+      <span v-if="!invisibleDots" v-bind:class="{ invisible: invisibleDots }">{{dots}}</span>
+    </span>
   </span>
 </template>
 
 <script>
+import Duration from './Duration.vue'
 export default {
   name: 'animated-dots',
-  props: ['nbDots', 'invisible'],
+  components: { Duration },
+  props: ['nbDots', 'invisibleDots', 'invisibleReverseDots'],
   data () {
     return {
       dots: ''
@@ -40,12 +46,8 @@ export default {
 </script>
 
 <style scoped>
-.dots {
-  width: 3em;
-  text-align: left;
-  width: 1em;
-  height: 1em;
-  /* float: right; */
+.slot {
+  opacity: 1;
 }
 .invisible {
   opacity: 0;
