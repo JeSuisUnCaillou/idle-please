@@ -1,5 +1,5 @@
 <template>
-  <span class="dots">
+  <span class="dots" v-bind:class="{ invisible: invisible }">
     {{dots}}
   </span>
 </template>
@@ -7,7 +7,7 @@
 <script>
 export default {
   name: 'animated-dots',
-  props: ['nbDots'],
+  props: ['nbDots', 'invisible'],
   data () {
     return {
       dots: ''
@@ -45,6 +45,9 @@ export default {
   text-align: left;
   width: 1em;
   height: 1em;
-  float: right;
+  /* float: right; */
+}
+.invisible {
+  opacity: 0;
 }
 </style>

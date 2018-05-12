@@ -20,7 +20,8 @@
     </div>
     <div class="center-bar">
       <div class="even-bigger">
-        <span class="dots-compensator" v-if="visibleDots"></span>
+        <!-- <span class="dots-compensator" v-if="visibleDots"></span> -->
+        <animated-dots nbDots="4" v-if="visibleDots" v-bind:invisible="!visibleReverseDots"></animated-dots>
         Wait for <duration :amount="cooldown"></duration>
         <animated-dots nbDots="4" v-if="visibleDots"></animated-dots>
       </div>
@@ -51,14 +52,16 @@ export default {
       visibleLevels: false,
       visibleTaunt: false,
       visibleDots: false,
+      visibleReverseDots: false,
       visibleNextDuration: false,
       steps: {
         0: () => { this.taunt('Congrats ! You just waited 5 seconds') },
         1: () => { this.visibleElapsedTime = true; this.taunt('Got nothing else to do, eh ?') },
         2: () => { this.visibleLevels = true; this.taunt('You\'re level 4 now, well played !') },
-        3: () => { this.visibleNextDuration = true; this.taunt('You can now see the duration of the next level') },
+        3: () => { this.visibleNextDuration = true; this.taunt('You can now see the duration of the current level') },
         4: () => { this.visibleDots = true; this.taunt('Here, have some animated dots') },
         5: () => { this.taunt('Are you entertained ?') },
+        6: () => {this.visibleReverseDots = true; this.taunt('I can also do REVERSE DOTS ! Wow O_O')},
         default: () => { this.taunt('LOL, you\'re still here ?') }
       }
     }
