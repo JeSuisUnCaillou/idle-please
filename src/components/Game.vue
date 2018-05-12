@@ -1,15 +1,21 @@
 <template>
   <div class="game">
     <div class="top-bar">
-      <fading-message duration="-1" v-bind:trigger="visibleElapsedTime">
-        <duration :amount="elapsedTime"></duration> wasted
-      </fading-message>
-      <fading-message duration="-1" v-bind:trigger="visibleLevels" class="text-right">
-        Level <span class="highlight">{{step+1}}</span>
-      </fading-message>
+      <div class="dual-container">
+        <fading-message duration="-1" v-bind:trigger="visibleElapsedTime">
+          <duration :amount="elapsedTime"></duration> wasted
+        </fading-message>
+        <div>
+          <fading-message duration="-1" v-bind:trigger="visibleLevels" class="text-right">
+            Level <span class="highlight">{{step+1}}</span>
+          </fading-message>
+          <fading-message duration="-1" v-bind:trigger="visibleNextDuration">
+            <duration :amount="nextAmountToWait"></duration>
+          </fading-message>
+        </div>
+      </div>
     </div>
     <div class="center-bar">
-      <duration :amount="nextAmountToWait"></duration>
       <div>
         <span class="dots-compensator" v-if="visibleDots"></span>
         Wait for <duration :amount="cooldown"></duration>
@@ -42,10 +48,11 @@ export default {
       visibleLevels: false,
       visibleTaunt: false,
       visibleDots: false,
+      visibleNextDuration: false,
       steps: {
         0: () => { this.visibleElapsedTime = true },
         1: () => { this.taunt('Got nothing else to do, eh ?') },
-        2: () => { this.visibleLevels = true },
+        2: () => { this.visibleLevels = true; this.visibleNextDuration = true },
         3: () => { this.visibleDots = true; this.taunt('Here, have some animated dots.') },
         default: () => { this.taunt('LOL') }
       }
@@ -105,7 +112,7 @@ export default {
   flex-direction: column;
   padding: 10px;
 }
-.top-bar {
+.dual-container {
   display: flex;
   justify-content: space-between;
 }

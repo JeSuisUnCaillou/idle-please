@@ -15,7 +15,7 @@ export default {
   },
   methods: {
     makeVisible () {
-      setTimeout(() => { this.isVisible = true }, 500)
+      this.isVisible = true
     },
     startCountDown () {
       if (this.duration >= 0) {
