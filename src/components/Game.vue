@@ -56,7 +56,7 @@ export default {
       visibleReverseDots: false,
       visibleNextDuration: false,
       steps: {
-        0: () => { /*this.taunt('It\'s gonna be good')*/ },
+        0: () => { /* this.taunt('It\'s gonna be good') */ },
         1: () => { this.taunt(`Congrats ! You just wasted ${this.elapsedTime} seconds`) },
         2: () => { this.visibleElapsedTime = true; this.taunt('Got nothing else to do, eh ?') },
         3: () => { this.visibleLevels = true; this.taunt(`You're level ${this.step + 2} now, well played !`) },
