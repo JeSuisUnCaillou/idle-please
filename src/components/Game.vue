@@ -53,12 +53,12 @@ export default {
       visibleDots: false,
       visibleNextDuration: false,
       steps: {
-        0: () => { this.visibleElapsedTime = true; this.taunt('Congrats ! You just waited 5 seconds') },
-        1: () => { this.taunt('Got nothing else to do, eh ?') },
-        2: () => { this.visibleLevels = true; this.taunt('You\'re level 4, well played !') },
+        0: () => { this.taunt('Congrats ! You just waited 5 seconds') },
+        1: () => { this.visibleElapsedTime = true; this.taunt('Got nothing else to do, eh ?') },
+        2: () => { this.visibleLevels = true; this.taunt('You\'re level 4 now, well played !') },
         3: () => { this.visibleNextDuration = true; this.taunt('You can now see the duration of the next level') },
         4: () => { this.visibleDots = true; this.taunt('Here, have some animated dots') },
-        default: () => { this.taunt('LOL') }
+        default: () => { this.taunt('LOL, you\'re still here ?') }
       }
     }
   },
