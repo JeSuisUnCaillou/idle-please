@@ -9,6 +9,7 @@
       </fading-message>
     </div>
     <div class="center-bar">
+      <duration :amount="nextAmountToWait"></duration>
       <div>
         <span class="dots-compensator" v-if="visibleDots"></span>
         Wait for <duration :amount="cooldown"></duration>
@@ -52,13 +53,20 @@ export default {
   },
   computed: {
     nextAmountToWait () {
-      return 5 + 5 * this.step
+      return this.totalAmountToWait(this.step) - this.totalAmountToWait(this.step - 1)
     },
     cooldown () {
-      return this.nextAmountToWait - this.elapsedTime
+      return this.totalAmountToWait(this.step) - this.elapsedTime
     }
   },
   methods: {
+    totalAmountToWait (givenStep) {
+      if (givenStep < 0) {
+        return 5
+      } else {
+        return 5 + 5 * givenStep * givenStep
+      }
+    },
     countDown () {
       setInterval(() => {
         this.elapsedTime++
