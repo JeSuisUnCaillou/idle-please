@@ -40,7 +40,13 @@ export default {
       visibleElapsedTime: false,
       visibleLevels: false,
       visibleTaunt: false,
-      visibleDots: false
+      visibleDots: false,
+      steps: {
+        0: () => { this.visibleElapsedTime = true },
+        1: () => { this.taunt('Got nothing else to do, eh ?') },
+        3: () => { this.visibleDots = true; this.taunt('Here, have some animated dots.') },
+        default: () => { this.taunt('LOL') }
+      }
     }
   },
   computed: {
@@ -59,24 +65,12 @@ export default {
       }, 1000)
     },
     computeGame () {
-      // console.log(this.cooldown)
       if (this.cooldown === 0) {
-        switch (this.step) {
-          case 0:
-            this.visibleElapsedTime = true
-            break
-          case 1:
-            this.taunt('Got nothing else to do, eh ?')
-            break
-          case 2:
-            this.visibleLevels = true
-            break
-          case 3:
-            this.visibleDots = true
-            this.taunt('Here, have some animated dots.')
-            break
-          default:
-            this.taunt('LOL')
+        let stepMethod = this.steps[this.step]
+        if (stepMethod) {
+          stepMethod()
+        } else {
+          this.steps.default()
         }
         this.step++
       }
