@@ -27,13 +27,11 @@
     </div>
     <div class="bottom-bar">
       <div class="taunt">
-        <fading-message duration="3" v-bind:trigger="visibleTaunt">
-            {{tauntMessage}}
-        </fading-message>
-        <!-- <fading-multiple-messages duration="3" offset="1" :trigger="visibleTaunt">
-          <div slot="caca">caca</div>
-          <div slot="pipi">pipi</div>
-        </fading-multiple-messages> -->
+        <!-- <fading-message duration="3" v-bind:trigger="visibleTaunt">
+            {{tauntMessages}}
+        </fading-message> -->
+        <fading-multiple-messages :messages="tauntMessages" duration="3" offset="1" v-bind:trigger="visibleTaunt">
+        </fading-multiple-messages>
       </div>
     </div>
   </div>
@@ -52,7 +50,7 @@ export default {
       developerMode: false,
       elapsedTime: 0,
       step: 0,
-      tauntMessage: '',
+      tauntMessages: [],
       visibleElapsedTime: false,
       visibleLevels: false,
       visibleTaunt: false,
@@ -61,16 +59,16 @@ export default {
       visibleNextDuration: false,
       dotsDuration: 1,
       steps: {
-        0: () => { this.taunt('Wait for it') },
-        1: () => { this.visibleLevels = true; this.taunt(`You're now level ${this.step + 1}, well played !`) },
+        0: () => { this.taunt(['Wait for it', 'It\'s gonna be good']) },
+        1: () => { this.visibleLevels = true; this.taunt([`You're now level ${this.step + 1}`, 'well played !']) },
         2: () => { this.visibleNextDuration = true; this.taunt('You can now see the duration of the current level') },
-        3: () => { this.visibleElapsedTime = true; this.taunt(`Congrats ! You just wasted ${this.elapsedTime} seconds`) },
+        3: () => { this.visibleElapsedTime = true; this.taunt(['Congrats !', `You just wasted ${this.elapsedTime} seconds`]) },
         4: () => { this.taunt('Got nothing else to do, eh ?') },
         5: () => { this.visibleDots = true; this.taunt('Here, have some animated dots') },
         6: () => { this.taunt('Are you entertained ?') },
-        7: () => { this.visibleReverseDots = true; this.taunt('Synchronized reversed dots ?! Wow O_O') },
-        8: () => { this.dotsDuration = 0.1; this.taunt('Do you like speed ? Let\'s speed up these dots.') },
-        9: () => { this.dotsDuration = 0.3; this.taunt('Ok, that is to fast. Let\'s slow them down.') },
+        7: () => { this.visibleReverseDots = true; this.taunt(['Synchronized reversed dots ?!', 'Wow O_O']) },
+        8: () => { this.dotsDuration = 0.1; this.taunt(['Let\'s speed up these dots.', 'Do you like speed ?', 'I do']) },
+        9: () => { this.dotsDuration = 0.3; this.taunt(['Ok, that is to fast.', 'Let\'s slow them down.']) },
         default: () => { this.taunt('LOL, you\'re still here ?') }
       }
     }
@@ -121,8 +119,14 @@ export default {
         this.step++
       }
     },
-    taunt (message) {
-      if (message) { this.tauntMessage = message }
+    taunt (messages) {
+      if (messages) {
+        if (typeof messages === 'string') {
+          this.tauntMessages = [messages]
+        } else {
+          this.tauntMessages = messages
+        }
+      }
       this.visibleTaunt = !this.visibleTaunt
     }
   },

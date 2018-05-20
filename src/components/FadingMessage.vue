@@ -7,7 +7,7 @@
 <script>
 export default {
   name: 'fading-message',
-  props: ['duration', 'trigger'],
+  props: ['duration', 'trigger', 'offset'],
   data () {
     return {
       isVisible: false
@@ -15,7 +15,10 @@ export default {
   },
   methods: {
     makeVisible () {
-      this.isVisible = true
+      setTimeout(() => {
+        this.isVisible = true
+        this.startCountDown()
+      }, this.offset * 1000)
     },
     startCountDown () {
       if (this.duration >= 0) {
@@ -26,7 +29,6 @@ export default {
   watch: {
     trigger: function (newValue, oldValue) {
       this.makeVisible()
-      this.startCountDown()
     }
   }
 }

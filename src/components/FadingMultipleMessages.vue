@@ -1,8 +1,7 @@
 <template>
   <div>
-    <fading-message v-for="(slotName, index) in slotNames" :key="index" :duration="duration" :trigger="triggers[slotName]">
-      <slot :name="slotName">
-      </slot>
+    <fading-message v-for="(message, index) in messages" :key="index" :duration="duration" :trigger="realTrigger" :offset="subOffset(index)">
+      {{message}}
     </fading-message>
   </div>
 </template>
@@ -12,31 +11,23 @@ import FadingMessage from './FadingMessage.vue'
 export default {
   name: 'fading-mutliple-messages',
   components: { FadingMessage },
-  props: ['duration', 'offset', 'trigger'],
+  props: ['messages', 'duration', 'offset', 'trigger'],
   data () {
     return {
-      triggers: {}
+      offsets: {},
+      realTrigger: false
     }
   },
-  computed: {
-    slotNames () {
-      return Object.keys(this.$slots)
-    }
-  },
-  mounted () {
-    for (var slotName in this.slotNames) {
-      this.triggers[slotName] = false
+  methods: {
+    subOffset (index) {
+      return this.offset * index
     }
   },
   watch: {
     trigger (oldVal, newVal) {
-      let i = 0
-      for (; i < this.slotNames.length; i++) {
-        let slotName = this.slotNames[i]
-        setInterval(() => {
-          this.triggers[slotName] = !this.triggers[slotName]
-        }, i * this.offset)
-      }
+      setTimeout(() => {
+        this.realTrigger = !this.realTrigger
+      }, 10)
     }
   }
 }
