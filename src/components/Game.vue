@@ -120,7 +120,6 @@ export default {
       }
     },
     addOneSecond () {
-      console.log('+1')
       this.elapsedTime += 1
       this.secondsAdded += 1
     },
