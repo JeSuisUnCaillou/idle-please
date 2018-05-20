@@ -257,12 +257,6 @@ export default {
 .even-bigger {
   font-size: 1.5em;
 }
-/* .fa-hourglass-end, .fa-plus {
-  margin-left: 5px;
-} */
-/* .fa-hourglass-start {
-  margin-right: 5px;
-} */
 .reset-button {
   background-color: transparent;
   border: unset;
