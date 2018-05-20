@@ -74,7 +74,7 @@ export default {
       visibleResetButton: false,
       dotsDuration: 1,
       steps: {
-        default: () => { this.taunt('LOL, you\'re still here ?') },
+        default: () => { this.taunt('LOL', 'You\'re still here ?') },
         0: () => { this.hasResetted ? this.taunt('You just reset the game ...') : this.taunt('Wait for it') },
         1: () => { this.visibleLevels = true; this.taunt(`You're level ${this.step + 1} now`, this.hasResetted ? 'Why would you do that ?' : 'Well played !') },
         2: () => { this.visibleNextDuration = true; this.hasResetted ? this.taunt('I hope you regret clicking reset') : this.taunt('You can see the duration of the current level, top right') },
@@ -83,7 +83,7 @@ export default {
         5: () => { this.dotsDuration = 1; this.visibleDots = true; this.taunt('Here,', 'have some animated dots') },
         6: () => { this.taunt('Are you entertained ?') },
         7: () => { this.visibleReverseDots = true; this.taunt('Wow O_O', 'Synchronized reversed dots !', 'So awesome') },
-        8: () => { this.visibleResetButton = true; this.hasResetted ? this.taunt('You can reset the game', 'with the bottom left button', 'BUT YOU ARLEADY KNOW THAT', 'DON\'T YOU ?') : this.taunt('You are able to reset the game now', 'Click on the bottom left button', 'But I wouldn\'t do that') },
+        8: () => { this.visibleResetButton = true; this.hasResetted ? this.taunt('You can reset the game', 'with the bottom left button', 'BUT YOU ARLEADY KNOW THAT', 'DON\'T YOU ?') : this.taunt('You can reset the game now', 'Click on the bottom left button', 'But I wouldn\'t do that') },
         9: () => { this.visibleResetButton = true; this.taunt('Why would you start over a game', 'designed to waste your time ?') },
         10: () => { this.dotsDuration = 0.1; this.taunt('Let\'s speed up these dots.', 'Do you like speed ?', '...', 'I do') },
         11: () => { this.dotsDuration = 1; this.taunt('Ok, that was way too fast', 'Let\'s slow them down a bit') },
