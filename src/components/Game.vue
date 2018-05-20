@@ -181,7 +181,7 @@ export default {
       }
     },
     taunt (messages) {
-      this.tauntMessages = arguments
+      this.tauntMessages = [].slice.call(arguments)
     }
   },
   mounted () {
