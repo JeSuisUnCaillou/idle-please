@@ -107,6 +107,7 @@ export default {
       this.hasResetted = true
       this.step = 0
       this.elapsedTime = 0
+      this.secondsAdded = 0
     },
     saveProgression () {
       window.localStorage.setItem('elapsedTime', this.elapsedTime)
