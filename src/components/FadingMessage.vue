@@ -36,6 +36,7 @@ export default {
 
 <style scoped>
 .message {
+  margin-top: 5px;
   opacity: 0;
   transition: all 1s cubic-bezier(.4,0,.2,1);
 }
