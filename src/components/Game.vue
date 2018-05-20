@@ -66,7 +66,7 @@ export default {
       dotsDuration: 1,
       steps: {
         0: () => { this.hasResetted ? this.taunt('You just reset the game ...') : this.taunt('Wait for it')},
-        1: () => { this.visibleLevels = true; this.taunt(this.hasResetted ? 'Why would you do that ?' : 'Well played !', `You're level ${this.step + 1} now`) },
+        1: () => { this.visibleLevels = true; this.taunt(`You're level ${this.step + 1} now`, this.hasResetted ? 'Why would you do that ?' : 'Well played !') },
         2: () => { this.visibleNextDuration = true; this.hasResetted ? this.taunt('I hope you regret clicking reset') : this.taunt('You can see the duration of the current level, top right') },
         3: () => { this.visibleElapsedTime = true; this.taunt('Congrats !', `You just wasted ${this.elapsedTime + 2} seconds`, 'of your miserable life') },
         4: () => { this.taunt('Got nothing else to do, eh ?', 'Well, me neither, so...') },
@@ -76,7 +76,7 @@ export default {
         8: () => { this.visibleResetButton = true; this.taunt('You are able to reset the game', 'Click on the bottom left button', 'But I wouldn\'t do that') },
         9: () => { this.visibleResetButton = true; this.taunt('Why would you start over a game', 'designed to waste your time ?') },
         10: () => { this.dotsDuration = 0.1; this.taunt('Let\'s speed up these dots.', 'Do you like speed ?', '...', 'I do') },
-        11: () => { this.dotsDuration = 1; this.taunt('Ok, that is too fast.', 'Let\'s slow them down a bit') },
+        11: () => { this.dotsDuration = 1; this.taunt('Ok, that was way too fast', 'Let\'s slow them down a bit') },
         default: () => { this.taunt('LOL, you\'re still here ?') }
       }
     }
