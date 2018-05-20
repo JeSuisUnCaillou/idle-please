@@ -9,7 +9,7 @@
         </fading-message>
         <div class="levels">
           <fading-message duration="-1" v-bind:trigger="visibleLevels" class="bigger">
-            Level <span class="highlight">{{step + 1}}</span>
+            Level <span class="highlight">{{step}}</span>
           </fading-message>
           <fading-message duration="-1" v-bind:trigger="visibleNextDuration">
             <duration :amount="nextAmountToWait"></duration>
@@ -57,10 +57,10 @@ export default {
       visibleNextDuration: false,
       steps: {
         0: () => { /* this.taunt('It\'s gonna be good') */ },
-        1: () => { this.taunt(`Congrats ! You just wasted ${this.elapsedTime} seconds`) },
-        2: () => { this.visibleElapsedTime = true; this.taunt('Got nothing else to do, eh ?') },
-        3: () => { this.visibleLevels = true; this.taunt(`You're level ${this.step + 2} now, well played !`) },
-        4: () => { this.visibleNextDuration = true; this.taunt('You can now see the duration of the current level') },
+        1: () => { this.visibleLevels = true; this.taunt(`You're now level ${this.step + 1}, well played !`) },
+        2: () => { this.visibleNextDuration = true; this.taunt('You can now see the duration of the current level') },
+        3: () => { this.visibleElapsedTime = true; this.taunt(`Congrats ! You just wasted ${this.elapsedTime} seconds`) },
+        4: () => { this.taunt('Got nothing else to do, eh ?') },
         5: () => { this.visibleDots = true; this.taunt('Here, have some animated dots') },
         6: () => { this.taunt('Are you entertained ?') },
         7: () => { this.visibleReverseDots = true; this.taunt('Synchronized reversed dots ?! Wow O_O') },
