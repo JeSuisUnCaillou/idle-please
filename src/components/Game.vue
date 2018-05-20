@@ -10,11 +10,14 @@
               <duration :amount="displayedElapsedTime" fallback="-"></duration>
             </div>
             <fading-message duration="-1" :trigger="visibleaddedSeconds">
-              <div class="amount-container">
+              <span class="amount-container">
                 <div class="icon"><i class="fas fa-plus"></i></div>
                 <duration :amount="addedSeconds" fallback="0 s"></duration>
+              </span>
+              <div class="amount-container" v-if="addedSeconds > 59">
+                <div class="icon"></div>
+                <span class="nb-clicks">({{addedSeconds}} clicks)</span>
               </div>
-              <div class="nb-clicks" v-if="addedSeconds > 59">{{addedSeconds}} clicks</div>
             </fading-message>
           </div>
         </fading-message>
@@ -247,7 +250,6 @@ export default {
   white-space: nowrap;
 }
 .nb-clicks {
-  margin-left: 2em;
   font-size: 0.75em;
 }
 .bigger {
