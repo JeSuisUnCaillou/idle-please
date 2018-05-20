@@ -89,7 +89,7 @@ export default {
         12: () => { this.visibleSecondsAdded = true; this.secondsAdded > 0 ? this.taunt('Let\'s see how many times you cheated', `Oh not bad, ${this.secondsAdded} clicks !`) : this.taunt('You didn\'t cheat once !', 'Well, know that you can add seconds', 'by clicking the time wasted, top left') },
         13: () => { this.taunt('Something extremely interesting should happen next level') },
         14: () => { this.taunt('No ?', 'Maybe the next one, then') },
-        15: () => { this.taunt('I\'m sure something will happen soon' ) },
+        15: () => { this.taunt('I\'m sure something will happen soon') },
         16: () => { this.taunt('Well', 'What did you expect ?') },
         17: () => { this.taunt('One day there will be', 'an esport version of this') },
         18: () => { this.taunt('Available on Battle.net', `around the year ${(new Date()).getFullYear()}`) },
