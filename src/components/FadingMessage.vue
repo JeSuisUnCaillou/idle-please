@@ -16,6 +16,7 @@ export default {
   },
   methods: {
     makeVisible () {
+      // TODO : unset the fading animation before making invisible, and setting it back after
       this.isVisible = false
       clearInterval(this.intervalId)
       this.intervalId = setTimeout(() => {

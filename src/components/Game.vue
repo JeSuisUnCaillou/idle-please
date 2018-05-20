@@ -3,13 +3,15 @@
     <div class="top-bar">
       <div class="dual-container">
         <fading-message duration="-1" v-bind:trigger="visibleElapsedTime">
+          <div class="elapsed-time-container" @click="addOneSecond">
             <div class="bigger">Time wasted</div>
             <i class="fas fa-hourglass-end"></i>
             <duration :amount="elapsedTime" fallback="-"></duration>
+          </div>
         </fading-message>
         <div class="levels">
           <fading-message duration="-1" v-bind:trigger="visibleLevels" class="bigger">
-              Level <span class="highlight">{{step}}</span>
+            Level <span class="highlight">{{step}}</span>
           </fading-message>
           <fading-message duration="-1" v-bind:trigger="visibleNextDuration">
             <duration :amount="currentLevelDuration"></duration>
@@ -21,7 +23,7 @@
     <div class="center-bar">
       <div class="even-bigger">
         <animated-dots nbDots="3" v-bind:invisibleDots="!visibleDots" v-bind:invisibleReverseDots="!visibleReverseDots" v-bind:duration="dotsDuration">
-           Wait for <duration :amount="cooldown" fallback="it"></duration>
+          Wait for <duration :amount="cooldown" fallback="it"></duration>
         </animated-dots>
       </div>
     </div>
@@ -55,6 +57,7 @@ export default {
       developerMode: false,
       elapsedTime: 0,
       step: 0,
+      secondsAdded: 0,
       tauntMessages: [],
       hasResetted: false,
       visibleElapsedTime: false,
@@ -65,7 +68,7 @@ export default {
       visibleResetButton: false,
       dotsDuration: 1,
       steps: {
-        0: () => { this.hasResetted ? this.taunt('You just reset the game ...') : this.taunt('Wait for it')},
+        0: () => { this.hasResetted ? this.taunt('You just reset the game ...') : this.taunt('Wait for it') },
         1: () => { this.visibleLevels = true; this.taunt(`You're level ${this.step + 1} now`, this.hasResetted ? 'Why would you do that ?' : 'Well played !') },
         2: () => { this.visibleNextDuration = true; this.hasResetted ? this.taunt('I hope you regret clicking reset') : this.taunt('You can see the duration of the current level, top right') },
         3: () => { this.visibleElapsedTime = true; this.taunt('Congrats !', `You just wasted ${this.elapsedTime + 2} seconds`, 'of your miserable life') },
@@ -109,6 +112,11 @@ export default {
       for (; i < this.elapsedTime; i++) {
         this.computeGame()
       }
+    },
+    addOneSecond () {
+      console.log('+1')
+      this.elapsedTime += 1
+      this.secondsAdded += 1
     },
     nextAmountToWait (givenStep) {
       if (this.developerMode) {
@@ -191,6 +199,9 @@ export default {
 }
 .bottom-nav {
   width: 100%;
+}
+.elapsed-time-container {
+  cursor: pointer;
 }
 .taunt {
   margin-top: 10px;

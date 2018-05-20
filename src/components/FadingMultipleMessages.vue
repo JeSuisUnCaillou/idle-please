@@ -1,6 +1,6 @@
 <template>
   <div>
-    <fading-message class="message" v-for="(message, index) in messages" :key="index" :duration="duration" :trigger="realTrigger" :offset="subOffset(index)">
+    <fading-message class="message" v-for="(message, index) in messages" :key="index" :duration="duration" :trigger="trigger" :offset="subOffset(index)">
       {{message}}
     </fading-message>
   </div>
@@ -15,7 +15,7 @@ export default {
   data () {
     return {
       offsets: {},
-      realTrigger: false
+      trigger: false
     }
   },
   methods: {
@@ -26,7 +26,7 @@ export default {
   watch: {
     messages (oldVal, newVal) {
       setTimeout(() => {
-        this.realTrigger = !this.realTrigger
+        this.trigger = !this.trigger
       }, 10)
     }
   }
