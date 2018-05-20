@@ -15,7 +15,8 @@ export default {
   data () {
     return {
       offsets: {},
-      trigger: false
+      trigger: false,
+      timeoutId: null
     }
   },
   methods: {
@@ -25,10 +26,13 @@ export default {
   },
   watch: {
     messages (oldVal, newVal) {
-      setTimeout(() => {
+      this.timeoutId = setTimeout(() => {
         this.trigger = !this.trigger
       }, 10)
     }
+  },
+  beforeDestroy () {
+    clearInterval(this.timeoutId)
   }
 }
 </script>
