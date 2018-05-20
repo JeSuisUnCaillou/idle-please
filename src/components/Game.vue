@@ -12,7 +12,7 @@
             Level <span class="highlight">{{step}}</span>
           </fading-message>
           <fading-message duration="-1" v-bind:trigger="visibleNextDuration">
-            <duration :amount="nextAmountToWait"></duration>
+            <duration :amount="nextAmountToWait(step)"></duration>
             <i class="fas fa-hourglass-start"></i>
           </fading-message>
         </div>
@@ -20,7 +20,6 @@
     </div>
     <div class="center-bar">
       <div class="even-bigger">
-        <!-- <span class="dots-compensator" v-if="visibleDots"></span> -->
         <animated-dots nbDots="3" v-bind:invisibleDots="!visibleDots" v-bind:invisibleReverseDots="!visibleReverseDots">
            Wait for <duration :amount="cooldown" fallback="it"></duration>
         </animated-dots>
@@ -69,24 +68,25 @@ export default {
     }
   },
   computed: {
-    nextAmountToWait () {
-      return this.totalAmountToWait(this.step) - this.totalAmountToWait(this.step - 1)
-    },
     cooldown () {
       return this.totalAmountToWait(this.step) - this.elapsedTime
     }
   },
   methods: {
-    totalAmountToWait (givenStep) {
-      if (givenStep < 0) {
-        return 0
+    nextAmountToWait (givenStep) {
+      if (this.developerMode) {
+        return 3
       } else {
-        if (this.developerMode) {
-          return 5 * givenStep
-        } else {
-          return 5 * givenStep * givenStep
-        }
+        return 5 + givenStep
+      }      
+    },
+    totalAmountToWait (givenStep) {
+      let total = 0
+      let s = 0
+      for (s; s < givenStep; s++) {
+        total += this.nextAmountToWait(s)
       }
+      return total
     },
     countDown () {
       this.computeGame()
@@ -145,12 +145,6 @@ export default {
   margin-top: 10px;
   text-align: center;
   /* color: #dfe9f3; */
-}
-.dots-compensator {
-  width: 3em;
-  width: 1em;
-  height: 1em;
-  float: left;
 }
 .levels {
   text-align: right;
