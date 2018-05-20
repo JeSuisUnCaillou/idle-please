@@ -1,6 +1,8 @@
 <template>
   <div class="message" v-bind:class="{ visible: isVisible }">
-    <slot></slot>
+    <div :class="{ 'is-reseting': isReseting }">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
@@ -11,15 +13,17 @@ export default {
   data () {
     return {
       isVisible: false,
+      isReseting: false,
       intervalId: null
     }
   },
   methods: {
     makeVisible () {
-      // TODO : unset the fading animation before making invisible, and setting it back after
+      this.isReseting = true
       this.isVisible = false
       clearInterval(this.intervalId)
       this.intervalId = setTimeout(() => {
+        this.isReseting = false
         this.isVisible = true
         this.startCountDown()
       }, this.offset * 1000)
@@ -49,5 +53,8 @@ export default {
 }
 .visible {
   opacity: 1;
+}
+.is-reseting {
+  opacity: 0;
 }
 </style>
