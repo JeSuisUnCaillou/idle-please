@@ -3,7 +3,7 @@
     <div class="top-bar">
       <div class="dual-container">
         <fading-message duration="-1" v-bind:trigger="visibleElapsedTime">
-          <div class="elapsed-time-container" @click="addOneSecond">
+          <div class="elapsed-time-container clickable" @click="addOneSecond">
             <div class="bigger">Time wasted</div>
             <i class="fas fa-hourglass-end"></i>
             <duration :amount="elapsedTime" fallback="-"></duration>
@@ -38,7 +38,7 @@
       </div>
       <div class="bottom-nav">
         <fading-message duration="-1" v-bind:trigger="visibleResetButton">
-          <button class="reset-button bigger" @click="resetProgression">
+          <button class="reset-button clickable bigger" @click="resetProgression">
             <i class="fas fa-power-off"></i>
           </button>
         </fading-message>
@@ -210,8 +210,14 @@ export default {
 .bottom-nav {
   width: 100%;
 }
-.elapsed-time-container {
+.clickable {
   cursor: pointer;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .taunt {
   margin-top: 10px;
@@ -236,7 +242,6 @@ export default {
   margin-right: 5px;
 }
 .reset-button {
-  cursor: pointer;
   background-color: transparent;
   border: unset;
   padding: 0 0 0 0;
