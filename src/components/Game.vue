@@ -211,7 +211,6 @@ export default {
   margin-bottom: 5px;
 }
 .top-bar, .bottom-bar {
-  /* height: 10em; */
   flex-basis: 0;
   flex-grow: 1;
   width: 100%;
@@ -241,7 +240,6 @@ export default {
   margin-top: 10px;
   text-align: center;
   height: 0;
-  /* color: #dfe9f3; */
 }
 .levels {
   text-align: right;
