@@ -7,10 +7,10 @@
             <div class="bigger">Time wasted</div>
             <i class="fas fa-hourglass-end"></i>
             <duration :amount="displayedElapsedTime" fallback="-"></duration>
-            <fading-message duration="-1" :trigger="visibleSecondsAdded">
+            <fading-message duration="-1" :trigger="visibleaddedSeconds">
               <i class="fas fa-plus"></i>
-              <duration :amount="secondsAdded" fallback="0 s"></duration>
-              <div class="nb-clicks" v-if="secondsAdded > 59">{{secondsAdded}} clicks</div>
+              <duration :amount="addedSeconds" fallback="0 s"></duration>
+              <div class="nb-clicks" v-if="addedSeconds > 59">{{addedSeconds}} clicks</div>
             </fading-message>
           </div>
         </fading-message>
@@ -62,12 +62,12 @@ export default {
       developerMode: false,
       elapsedTime: 0,
       step: 0,
-      secondsAdded: 0,
+      addedSeconds: 0,
       tauntMessages: [],
       hasResetted: false,
       visibleElapsedTime: false,
       visibleLevels: false,
-      visibleSecondsAdded: false,
+      visibleaddedSeconds: false,
       visibleDots: false,
       visibleReverseDots: false,
       visibleNextDuration: false,
@@ -87,7 +87,7 @@ export default {
         9: () => { this.visibleResetButton = true; this.taunt('Why would you start over a game', 'designed to waste your time ?') },
         10: () => { this.dotsDuration = 0.1; this.taunt('Let\'s speed up these dots.', 'Do you like speed ?', '...', 'I do') },
         11: () => { this.dotsDuration = 1; this.taunt('Ok, that was way too fast', 'Let\'s slow them down a bit') },
-        12: () => { this.visibleSecondsAdded = true; this.secondsAdded > 0 ? this.taunt('Let\'s see how many times you cheated', `Oh not bad, ${this.secondsAdded} clicks !`) : this.taunt('You didn\'t cheat once !', 'Well, know that you can add seconds', 'by clicking the time wasted, top left') },
+        12: () => { this.visibleaddedSeconds = true; this.addedSeconds > 0 ? this.taunt('Let\'s see how many times you cheated', `Oh not bad, ${this.addedSeconds} clicks !`) : this.taunt('You didn\'t cheat once !', 'Well, know that you can add seconds', 'by clicking the time wasted, top left') },
         13: () => { this.taunt('Something extremely interesting should happen next level') },
         14: () => { this.taunt('No ?', 'Maybe the next one, then') },
         15: () => { this.taunt('I\'m sure something will happen soon') },
@@ -112,7 +112,7 @@ export default {
       }
     },
     displayedElapsedTime () {
-      return this.visibleSecondsAdded ? this.elapsedTime - this.secondsAdded : this.elapsedTime
+      return this.visibleaddedSeconds ? this.elapsedTime - this.addedSeconds : this.elapsedTime
     }
   },
   methods: {
@@ -120,13 +120,15 @@ export default {
       this.hasResetted = true
       this.step = 0
       this.elapsedTime = 0
-      this.secondsAdded = 0
+      this.addedSeconds = 0
     },
     saveProgression () {
       window.localStorage.setItem('elapsedTime', this.elapsedTime)
+      window.localStorage.setItem('addedSeconds', this.addedSeconds)
     },
     loadProgression () {
       this.elapsedTime = parseInt(window.localStorage.getItem('elapsedTime')) || 0
+      this.addedSeconds = parseInt(window.localStorage.getItem('addedSeconds')) || 0
       this.step = 0
       var i = 0
       for (; i < this.elapsedTime; i++) {
@@ -135,7 +137,7 @@ export default {
     },
     addOneSecond () {
       this.elapsedTime += 1
-      this.secondsAdded += 1
+      this.addedSeconds += 1
     },
     nextAmountToWait (givenStep) {
       if (this.developerMode) {
@@ -157,7 +159,6 @@ export default {
       this.ticker = setInterval(() => {
         this.elapsedTime++
         this.computeGame()
-        this.saveProgression()
       }, 1000)
     },
     computeGame () {
@@ -169,6 +170,7 @@ export default {
           this.steps.default()
         }
         this.step++
+        this.saveProgression()
       }
     },
     taunt (messages) {
