@@ -12,7 +12,7 @@
             Level <span class="highlight">{{step}}</span>
           </fading-message>
           <fading-message duration="-1" v-bind:trigger="visibleNextDuration">
-            <duration :amount="nextAmountToWait(step)"></duration>
+            <duration :amount="currentLevelDuration"></duration>
             <i class="fas fa-hourglass-start"></i>
           </fading-message>
         </div>
@@ -70,6 +70,9 @@ export default {
   computed: {
     cooldown () {
       return this.totalAmountToWait(this.step) - this.elapsedTime
+    },
+    currentLevelDuration () {
+      return this.nextAmountToWait(this.step) - 1
     }
   },
   methods: {
