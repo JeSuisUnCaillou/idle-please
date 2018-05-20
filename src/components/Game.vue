@@ -74,6 +74,7 @@ export default {
       visibleResetButton: false,
       dotsDuration: 1,
       steps: {
+        default: () => { this.taunt('LOL, you\'re still here ?') },
         0: () => { this.hasResetted ? this.taunt('You just reset the game ...') : this.taunt('Wait for it') },
         1: () => { this.visibleLevels = true; this.taunt(`You're level ${this.step + 1} now`, this.hasResetted ? 'Why would you do that ?' : 'Well played !') },
         2: () => { this.visibleNextDuration = true; this.hasResetted ? this.taunt('I hope you regret clicking reset') : this.taunt('You can see the duration of the current level, top right') },
@@ -92,8 +93,10 @@ export default {
         15: () => { this.taunt('I\'m sure something will happen soon') },
         16: () => { this.taunt('Well', 'What did you expect ?') },
         17: () => { this.taunt('One day there will be', 'an esport version of this') },
-        18: () => { this.taunt('Available on Battle.net', `around the year ${(new Date()).getFullYear()}`) },
-        default: () => { this.taunt('LOL, you\'re still here ?') }
+        18: () => { this.taunt('Available on Battle.net', `around the year ${(new Date()).getFullYear() + 1}`) },
+        // 19: () => {},
+        20: () => { this.taunt('Nothing else to see', 'Go home', 'The game is over') },
+        21: () => { this.taunt('You\'re stubborn, heh ?', '...', 'Me too') }
       }
     }
   },
