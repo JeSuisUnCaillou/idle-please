@@ -13,10 +13,11 @@ import Duration from './Duration.vue'
 export default {
   name: 'animated-dots',
   components: { Duration },
-  props: ['nbDots', 'invisibleDots', 'invisibleReverseDots'],
+  props: ['nbDots', 'invisibleDots', 'invisibleReverseDots', 'duration'],
   data () {
     return {
-      dots: ''
+      dots: '',
+      intervalID: null
     }
   },
   computed: {
@@ -35,12 +36,22 @@ export default {
       } else {
         this.dots += '.'
       }
+    },
+    setInterval () {
+      this.intervalID = setInterval(() => {
+        this.cycleDots()
+      }, this.duration * 1000)
     }
   },
   mounted () {
-    setInterval(() => {
-      this.cycleDots()
-    }, 1000)
+    if (!this.duration) { this.duration = 1 }
+    this.setInterval()
+  },
+  watch: {
+    duration (oldVal, newVal) {
+      clearInterval(this.intervalID)
+      this.setInterval()
+    }
   }
 }
 </script>

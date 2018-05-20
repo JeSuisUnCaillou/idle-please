@@ -20,7 +20,7 @@
     </div>
     <div class="center-bar">
       <div class="even-bigger">
-        <animated-dots nbDots="3" v-bind:invisibleDots="!visibleDots" v-bind:invisibleReverseDots="!visibleReverseDots">
+        <animated-dots nbDots="3" v-bind:invisibleDots="!visibleDots" v-bind:invisibleReverseDots="!visibleReverseDots" v-bind:duration="dotsDuration">
            Wait for <duration :amount="cooldown" fallback="it"></duration>
         </animated-dots>
       </div>
@@ -44,7 +44,7 @@ export default {
   components: { FadingMessage, Duration, AnimatedDots },
   data () {
     return {
-      developerMode: false,
+      developerMode: true,
       elapsedTime: 0,
       step: 0,
       tauntMessage: '',
@@ -54,6 +54,7 @@ export default {
       visibleDots: false,
       visibleReverseDots: false,
       visibleNextDuration: false,
+      dotsDuration: 1,
       steps: {
         0: () => { this.taunt('Wait for it') },
         1: () => { this.visibleLevels = true; this.taunt(`You're now level ${this.step + 1}, well played !`) },
@@ -63,6 +64,8 @@ export default {
         5: () => { this.visibleDots = true; this.taunt('Here, have some animated dots') },
         6: () => { this.taunt('Are you entertained ?') },
         7: () => { this.visibleReverseDots = true; this.taunt('Synchronized reversed dots ?! Wow O_O') },
+        8: () => { this.dotsDuration = 0.1; this.taunt('Do you like speed ? Let\'s speed up these dots.') },
+        9: () => { this.dotsDuration = 0.3; this.taunt('Ok, that is to fast. Let\'s slow them down.') },
         default: () => { this.taunt('LOL, you\'re still here ?') }
       }
     }
@@ -85,12 +88,12 @@ export default {
         return 4
       } else {
         return 5 + givenStep
-      }      
+      }
     },
     totalAmountToWait (givenStep) {
       let total = 0
       let s = 0
-      for (s; s < givenStep; s++) {
+      for (; s < givenStep; s++) {
         total += this.nextAmountToWait(s)
       }
       return total
