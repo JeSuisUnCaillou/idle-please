@@ -86,6 +86,10 @@ export default {
         10: () => { this.dotsDuration = 0.1; this.taunt('Let\'s speed up these dots.', 'Do you like speed ?', '...', 'I do') },
         11: () => { this.dotsDuration = 1; this.taunt('Ok, that was way too fast', 'Let\'s slow them down a bit') },
         12: () => { this.visibleSecondsAdded = true; this.secondsAdded > 0 ? this.taunt('Let\'s see how many times you cheated', `Oh not bad, ${this.secondsAdded} clicks !`) : this.taunt('You didn\'t cheat once !', 'Well, know that you can add seconds', 'by clicking the time wasted, top left') },
+        13: () => { this.taunt('Something extremely interesting should happen next level') },
+        14: () => { this.taunt('No ?', 'Maybe the next one, then') },
+        15: () => { this.taunt('I\'m sure something will happen soon' ) },
+        16: () => { this.taunt('Well', 'What did you expect ?') },
         default: () => { this.taunt('LOL, you\'re still here ?') }
       }
     }
@@ -235,6 +239,7 @@ export default {
   cursor: pointer;
   background-color: transparent;
   border: unset;
+  padding: 0 0 0 0;
   transition: all 1s cubic-bezier(.4,0,.2,1);
 }
 .reset-button:focus {
