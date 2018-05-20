@@ -11,7 +11,7 @@ import FadingMessage from './FadingMessage.vue'
 export default {
   name: 'fading-mutliple-messages',
   components: { FadingMessage },
-  props: ['messages', 'duration', 'offset', 'trigger'],
+  props: ['messages', 'duration', 'offset'],
   data () {
     return {
       offsets: {},
@@ -24,7 +24,7 @@ export default {
     }
   },
   watch: {
-    trigger (oldVal, newVal) {
+    messages (oldVal, newVal) {
       setTimeout(() => {
         this.realTrigger = !this.realTrigger
       }, 10)

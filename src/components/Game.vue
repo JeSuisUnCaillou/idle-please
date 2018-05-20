@@ -27,10 +27,7 @@
     </div>
     <div class="bottom-bar">
       <div class="taunt">
-        <!-- <fading-message duration="3" v-bind:trigger="visibleTaunt">
-            {{tauntMessages}}
-        </fading-message> -->
-        <fading-multiple-messages :messages="tauntMessages" duration="3" offset="1" v-bind:trigger="visibleTaunt">
+        <fading-multiple-messages :messages="tauntMessages" duration="3" offset="1" >
         </fading-multiple-messages>
       </div>
     </div>
@@ -47,13 +44,12 @@ export default {
   components: { FadingMessage, FadingMultipleMessages, Duration, AnimatedDots },
   data () {
     return {
-      developerMode: false,
+      developerMode: true,
       elapsedTime: 0,
       step: 0,
       tauntMessages: [],
       visibleElapsedTime: false,
       visibleLevels: false,
-      visibleTaunt: false,
       visibleDots: false,
       visibleReverseDots: false,
       visibleNextDuration: false,
@@ -64,7 +60,7 @@ export default {
         2: () => { this.visibleNextDuration = true; this.taunt('You can now see the duration of the current level') },
         3: () => { this.visibleElapsedTime = true; this.taunt('Congrats !', `You just wasted ${this.elapsedTime + 1} seconds`) },
         4: () => { this.taunt('Got nothing else to do, eh ?') },
-        5: () => { this.visibleDots = true; this.taunt('Here, have some animated dots') },
+        5: () => { this.visibleDots = true; this.taunt('Here', 'have some animated dots') },
         6: () => { this.taunt('Are you entertained ?') },
         7: () => { this.visibleReverseDots = true; this.taunt('Synchronized reversed dots ?!', 'Wow O_O') },
         8: () => { this.dotsDuration = 0.1; this.taunt('Let\'s speed up these dots.', 'Do you like speed ?', 'I do') },
@@ -122,14 +118,6 @@ export default {
     taunt (messages) {
       console.log(arguments)
       this.tauntMessages = arguments
-      // if (messages) {
-      //   if (typeof messages === 'string') {
-      //     this.tauntMessages = [messages]
-      //   } else {
-      //     this.tauntMessages = messages
-      //   }
-      // }
-      this.visibleTaunt = !this.visibleTaunt
     }
   },
   mounted () {
