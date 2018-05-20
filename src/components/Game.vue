@@ -28,8 +28,12 @@
     <div class="bottom-bar">
       <div class="taunt">
         <fading-message duration="3" v-bind:trigger="visibleTaunt">
-          {{tauntMessage}}
+            {{tauntMessage}}
         </fading-message>
+        <!-- <fading-multiple-messages duration="3" offset="1" :trigger="visibleTaunt">
+          <div slot="caca">caca</div>
+          <div slot="pipi">pipi</div>
+        </fading-multiple-messages> -->
       </div>
     </div>
   </div>
@@ -37,14 +41,15 @@
 
 <script>
 import FadingMessage from './FadingMessage.vue'
+import FadingMultipleMessages from './FadingMultipleMessages.vue'
 import Duration from './Duration.vue'
 import AnimatedDots from './AnimatedDots.vue'
 export default {
   name: 'game',
-  components: { FadingMessage, Duration, AnimatedDots },
+  components: { FadingMessage, FadingMultipleMessages, Duration, AnimatedDots },
   data () {
     return {
-      developerMode: true,
+      developerMode: false,
       elapsedTime: 0,
       step: 0,
       tauntMessage: '',
