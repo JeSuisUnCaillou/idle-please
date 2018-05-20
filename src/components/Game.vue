@@ -73,7 +73,7 @@ export default {
         5: () => { this.dotsDuration = 1; this.visibleDots = true; this.taunt('Here,', 'have some animated dots') },
         6: () => { this.taunt('Are you entertained ?') },
         7: () => { this.visibleReverseDots = true; this.taunt('Wow O_O', 'Synchronized reversed dots !', 'So awesome') },
-        8: () => { this.visibleResetButton = true; this.taunt('You are able to reset the game', 'Click on the bottom left button', 'But I wouldn\'t do that') },
+        8: () => { this.visibleResetButton = true; this.hasResetted ? this.taunt('You can reset the game', 'with the bottom left button', 'BUT YOU ARLEADY KNOW THAT', 'DON\'T YOU ?') : this.taunt('You are able to reset the game now', 'Click on the bottom left button', 'But I wouldn\'t do that') },
         9: () => { this.visibleResetButton = true; this.taunt('Why would you start over a game', 'designed to waste your time ?') },
         10: () => { this.dotsDuration = 0.1; this.taunt('Let\'s speed up these dots.', 'Do you like speed ?', '...', 'I do') },
         11: () => { this.dotsDuration = 1; this.taunt('Ok, that was way too fast', 'Let\'s slow them down a bit') },
