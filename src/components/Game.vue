@@ -91,6 +91,8 @@ export default {
         14: () => { this.taunt('No ?', 'Maybe the next one, then') },
         15: () => { this.taunt('I\'m sure something will happen soon' ) },
         16: () => { this.taunt('Well', 'What did you expect ?') },
+        17: () => { this.taunt('One day there will be', 'an esport version of this') },
+        18: () => { this.taunt('Available on Battle.net', `around the year ${(new Date()).getFullYear()}`) },
         default: () => { this.taunt('LOL, you\'re still here ?') }
       }
     }
