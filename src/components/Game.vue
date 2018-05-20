@@ -3,13 +3,17 @@
     <div class="top-bar">
       <div class="dual-container">
         <fading-message duration="-1" v-bind:trigger="visibleElapsedTime">
-          <div class="bigger">Time wasted</div>
-          <i class="fas fa-hourglass-end"></i>
-          <duration :amount="elapsedTime" fallback="none"></duration>
+          <div>
+            <div class="bigger">Time wasted</div>
+            <i class="fas fa-hourglass-end"></i>
+            <duration :amount="elapsedTime" fallback="-"></duration>
+          </div>
         </fading-message>
         <div class="levels">
           <fading-message duration="-1" v-bind:trigger="visibleLevels" class="bigger">
-            Level <span class="highlight">{{step}}</span>
+            <div>
+              Level <span class="highlight">{{step}}</span>
+            </div>
           </fading-message>
           <fading-message duration="-1" v-bind:trigger="visibleNextDuration">
             <duration :amount="currentLevelDuration"></duration>
@@ -31,9 +35,11 @@
         </fading-multiple-messages>
       </div>
       <div class="bottom-nav">
-        <button class="reset-button bigger" @click="resetProgression">
-          <i class="fas fa-power-off"></i>
-        </button>
+        <fading-message duration="-1" v-bind:trigger="visibleResetButton">
+          <button class="reset-button bigger" @click="resetProgression">
+            <i class="fas fa-power-off"></i>
+          </button>
+        </fading-message>
       </div>
     </div>
   </div>
@@ -53,23 +59,26 @@ export default {
       elapsedTime: 0,
       step: 0,
       tauntMessages: [],
+      hasResetted: false,
       visibleElapsedTime: false,
       visibleLevels: false,
       visibleDots: false,
       visibleReverseDots: false,
       visibleNextDuration: false,
+      visibleResetButton: false,
       dotsDuration: 1,
       steps: {
-        0: () => { this.taunt('Wait for it') },
-        1: () => { this.visibleLevels = true; this.taunt(`You're now level ${this.step + 1}`, 'Well played !') },
-        2: () => { this.visibleNextDuration = true; this.taunt('You can now see the duration of the current level') },
-        3: () => { this.visibleElapsedTime = true; this.taunt('Congrats !', `You just wasted ${this.elapsedTime + 1} seconds`) },
-        4: () => { this.taunt('Got nothing else to do, eh ?') },
-        5: () => { this.dotsDuration = 1; this.visibleDots = true; this.taunt('Here', 'have some animated dots') },
+        0: () => { this.taunt(this.hasResetted ? '... You just reset the game ...' : 'Wait for it')},
+        1: () => { this.visibleLevels = true; this.taunt(this.hasResetted ? 'Why would you do that ?' : 'Well played !', `You're level ${this.step + 1} now`) },
+        2: () => { this.visibleNextDuration = true; this.hasResetted ? this.taunt('I hope you regret clicking reset') : this.taunt('You can see the duration of the current level, top right') },
+        3: () => { this.visibleElapsedTime = true; this.taunt('Congrats !', `You just wasted ${this.elapsedTime + 2} seconds`, 'of your miserable life') },
+        4: () => { this.taunt('Got nothing else to do, eh ?', 'Me neither') },
+        5: () => { this.dotsDuration = 1; this.visibleDots = true; this.taunt('Here,', 'have some animated dots') },
         6: () => { this.taunt('Are you entertained ?') },
-        7: () => { this.visibleReverseDots = true; this.taunt('Synchronized reversed dots ?!', 'Wow O_O') },
-        8: () => { this.dotsDuration = 0.1; this.taunt('Let\'s speed up these dots.', 'Do you like speed ?', 'I do') },
-        9: () => { this.dotsDuration = 0.25; this.taunt('Ok, that is to fast.', 'Let\'s slow them down a bit') },
+        7: () => { this.visibleReverseDots = true; this.taunt('Wow O_O', 'Synchronized reversed dots !', 'So awesome') },
+        8: () => { this.visibleResetButton = true; this.taunt('You can reset the game if you want', 'But I wouldn\'t do that') },
+        9: () => { this.dotsDuration = 0.1; this.taunt('Let\'s speed up these dots.', 'Do you like speed ?', '...', 'I do') },
+        10: () => { this.dotsDuration = 1; this.taunt('Ok, that is too fast.', 'Let\'s slow them down a bit') },
         default: () => { this.taunt('LOL, you\'re still here ?') }
       }
     }
@@ -88,8 +97,15 @@ export default {
   },
   methods: {
     resetProgression () {
+      this.hasResetted = true
       this.step = 0
       this.elapsedTime = 0
+      this.visibleLevels = false
+      this.visibleNextDuration = false
+      this.visibleElapsedTime = false
+      this.visibleDots = false
+      this.visibleReverseDots = false
+      this.visibleResetButton = false
     },
     saveProgression () {
       window.localStorage.setItem('elapsedTime', this.elapsedTime)
@@ -110,9 +126,6 @@ export default {
       }
     },
     totalAmountToWait (givenStep) {
-      if (givenStep < 0) {
-        return 0
-      }
       let total = 0
       let s = 0
       for (; s < givenStep; s++) {
@@ -168,7 +181,9 @@ export default {
   margin-bottom: 5px;
 }
 .top-bar, .bottom-bar {
-  height: 10em;
+  /* height: 10em; */
+  flex-basis: 0;
+  flex-grow: 1;
   width: 100%;
 }
 .center-bar {
@@ -185,6 +200,7 @@ export default {
 .taunt {
   margin-top: 10px;
   text-align: center;
+  height: 0;
   /* color: #dfe9f3; */
 }
 .levels {
@@ -200,7 +216,7 @@ export default {
 .fa-hourglass-end {
   margin-left: 5px;
 }
-.fa-hourglass-start {
+.fa-hourglass-start, .fa-power-off {
   margin-right: 5px;
 }
 .reset-button {
