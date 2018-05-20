@@ -62,7 +62,7 @@ export default {
         0: () => { this.taunt('Wait for it') },
         1: () => { this.visibleLevels = true; this.taunt(`You're now level ${this.step + 1}`, 'Well played !') },
         2: () => { this.visibleNextDuration = true; this.taunt('You can now see the duration of the current level') },
-        3: () => { this.visibleElapsedTime = true; this.taunt('Congrats !', `You just wasted ${this.elapsedTime + 2} seconds`) },
+        3: () => { this.visibleElapsedTime = true; this.taunt('Congrats !', `You just wasted ${this.elapsedTime + 1} seconds`) },
         4: () => { this.taunt('Got nothing else to do, eh ?') },
         5: () => { this.visibleDots = true; this.taunt('Here, have some animated dots') },
         6: () => { this.taunt('Are you entertained ?') },
