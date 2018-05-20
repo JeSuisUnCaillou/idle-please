@@ -10,6 +10,7 @@
             <fading-message duration="-1" :trigger="visibleSecondsAdded">
               <i class="fas fa-plus"></i>
               <duration :amount="secondsAdded" fallback="0 s"></duration>
+              <div class="nb-clicks" v-if="secondsAdded > 59">{{secondsAdded}} clicks</div>
             </fading-message>
           </div>
         </fading-message>
@@ -231,6 +232,10 @@ export default {
 .levels {
   text-align: right;
   white-space: nowrap;
+}
+.nb-clicks {
+  margin-left: 2em;
+  font-size: 0.75em;
 }
 .bigger {
   font-size: 1.25em;
