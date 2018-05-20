@@ -55,7 +55,7 @@ export default {
       visibleReverseDots: false,
       visibleNextDuration: false,
       steps: {
-        0: () => { /* this.taunt('It\'s gonna be good') */ },
+        0: () => { this.taunt('Wait for it') },
         1: () => { this.visibleLevels = true; this.taunt(`You're now level ${this.step + 1}, well played !`) },
         2: () => { this.visibleNextDuration = true; this.taunt('You can now see the duration of the current level') },
         3: () => { this.visibleElapsedTime = true; this.taunt(`Congrats ! You just wasted ${this.elapsedTime} seconds`) },
@@ -72,13 +72,17 @@ export default {
       return this.totalAmountToWait(this.step) - this.elapsedTime
     },
     currentLevelDuration () {
-      return this.nextAmountToWait(this.step) - 1
+      if (this.developerMode) {
+        return this.nextAmountToWait(this.step)
+      } else {
+        return this.nextAmountToWait(this.step) - 1
+      }
     }
   },
   methods: {
     nextAmountToWait (givenStep) {
       if (this.developerMode) {
-        return 3
+        return 4
       } else {
         return 5 + givenStep
       }      
