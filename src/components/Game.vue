@@ -7,6 +7,10 @@
             <div class="bigger">Time wasted</div>
             <i class="fas fa-hourglass-end"></i>
             <duration :amount="elapsedTime" fallback="-"></duration>
+            <fading-message duration="-1" :trigger="visibleSecondsAdded">
+              <i class="fas fa-plus"></i>
+              <duration :amount="secondsAdded" fallback="0 s"></duration>
+            </fading-message>
           </div>
         </fading-message>
         <div class="levels">
@@ -62,6 +66,7 @@ export default {
       hasResetted: false,
       visibleElapsedTime: false,
       visibleLevels: false,
+      visibleSecondsAdded: false,
       visibleDots: false,
       visibleReverseDots: false,
       visibleNextDuration: false,
@@ -80,6 +85,7 @@ export default {
         9: () => { this.visibleResetButton = true; this.taunt('Why would you start over a game', 'designed to waste your time ?') },
         10: () => { this.dotsDuration = 0.1; this.taunt('Let\'s speed up these dots.', 'Do you like speed ?', '...', 'I do') },
         11: () => { this.dotsDuration = 1; this.taunt('Ok, that was way too fast', 'Let\'s slow them down a bit') },
+        12: () => { this.visibleSecondsAdded = true; this.secondsAdded > 0 ? this.taunt('Let\'s see how many times you cheated', `Oh not bad, ${this.secondsAdded} clicks !`) : this.taunt('You didn\'t cheat once !', 'Well, know that you can add seconds', 'by clicking the time wasted, top left') },
         default: () => { this.taunt('LOL, you\'re still here ?') }
       }
     }
@@ -219,10 +225,10 @@ export default {
 .even-bigger {
   font-size: 1.5em;
 }
-.fa-hourglass-end {
+.fa-hourglass-end, .fa-plus {
   margin-left: 5px;
 }
-.fa-hourglass-start, .fa-power-off {
+.fa-hourglass-start {
   margin-right: 5px;
 }
 .reset-button {
