@@ -5,11 +5,15 @@
         <fading-message duration="-1" v-bind:trigger="visibleElapsedTime">
           <div class="elapsed-time-container clickable" @click="addOneSecond">
             <div class="bigger">Time wasted</div>
-            <i class="fas fa-hourglass-end"></i>
-            <duration :amount="displayedElapsedTime" fallback="-"></duration>
+            <div class="amount-container">
+              <div class="icon"><i class="fas fa-hourglass-end"></i></div>
+              <duration :amount="displayedElapsedTime" fallback="-"></duration>
+            </div>
             <fading-message duration="-1" :trigger="visibleaddedSeconds">
-              <i class="fas fa-plus"></i>
-              <duration :amount="addedSeconds" fallback="0 s"></duration>
+              <div class="amount-container">
+                <div class="icon"><i class="fas fa-plus"></i></div>
+                <duration :amount="addedSeconds" fallback="0 s"></duration>
+              </div>
               <div class="nb-clicks" v-if="addedSeconds > 59">{{addedSeconds}} clicks</div>
             </fading-message>
           </div>
@@ -19,8 +23,10 @@
             Level <span class="highlight">{{step}}</span>
           </fading-message>
           <fading-message duration="-1" v-bind:trigger="visibleNextDuration">
-            <duration :amount="currentLevelDuration"></duration>
-            <i class="fas fa-hourglass-start"></i>
+            <div class="amount-container right">
+              <duration :amount="currentLevelDuration"></duration>
+              <div class="icon"><i class="fas fa-hourglass-start"></i></div>
+            </div>
           </fading-message>
         </div>
       </div>
@@ -251,12 +257,12 @@ export default {
 .even-bigger {
   font-size: 1.5em;
 }
-.fa-hourglass-end, .fa-plus {
+/* .fa-hourglass-end, .fa-plus {
   margin-left: 5px;
-}
-.fa-hourglass-start {
+} */
+/* .fa-hourglass-start {
   margin-right: 5px;
-}
+} */
 .reset-button {
   background-color: transparent;
   border: unset;
@@ -266,5 +272,16 @@ export default {
 .reset-button:focus {
   outline: none;
   color: #ffffff;
+}
+.amount-container {
+  display: flex;
+}
+.amount-container.right {
+  justify-content: flex-end;
+}
+.icon {
+  width: 1.7em;
+  text-align: center;
+  margin: 0 !important;
 }
 </style>
