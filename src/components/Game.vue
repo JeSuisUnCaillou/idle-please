@@ -127,6 +127,7 @@ export default {
       this.step = 0
       this.elapsedTime = 0
       this.addedSeconds = 0
+      this.saveProgression()
     },
     saveProgression () {
       window.localStorage.setItem('elapsedTime', this.elapsedTime)
