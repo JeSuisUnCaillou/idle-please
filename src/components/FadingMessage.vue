@@ -10,20 +10,23 @@ export default {
   props: ['duration', 'trigger', 'offset'],
   data () {
     return {
-      isVisible: false
+      isVisible: false,
+      intervalId: null
     }
   },
   methods: {
     makeVisible () {
       this.isVisible = false
-      setTimeout(() => {
+      clearInterval(this.intervalId)
+      this.intervalId = setTimeout(() => {
         this.isVisible = true
         this.startCountDown()
       }, this.offset * 1000)
     },
     startCountDown () {
       if (this.duration >= 0) {
-        setTimeout(() => { this.isVisible = false }, this.duration * 1000)
+        clearInterval(this.intervalId)
+        this.intervalId = setTimeout(() => { this.isVisible = false }, this.duration * 1000)
       }
     }
   },
@@ -31,6 +34,9 @@ export default {
     trigger: function (newValue, oldValue) {
       this.makeVisible()
     }
+  },
+  beforeDestroy () {
+    clearInterval(this.intervalId)
   }
 }
 </script>
