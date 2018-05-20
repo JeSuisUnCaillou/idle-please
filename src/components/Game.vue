@@ -64,7 +64,7 @@ export default {
         6: () => { this.taunt('Are you entertained ?') },
         7: () => { this.visibleReverseDots = true; this.taunt('Synchronized reversed dots ?!', 'Wow O_O') },
         8: () => { this.dotsDuration = 0.1; this.taunt('Let\'s speed up these dots.', 'Do you like speed ?', 'I do') },
-        9: () => { this.dotsDuration = 0.3; this.taunt('Ok, that is to fast.', 'Let\'s slow them down.') },
+        9: () => { this.dotsDuration = 0.3; this.taunt('Ok, that is to fast.', 'Let\'s slow them down a bit') },
         default: () => { this.taunt('LOL, you\'re still here ?') }
       }
     }
