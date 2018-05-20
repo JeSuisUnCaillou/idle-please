@@ -82,6 +82,16 @@ export default {
     }
   },
   methods: {
+    saveProgression () {
+      window.localStorage.setItem('elapsedTime', this.elapsedTime)
+    },
+    loadProgression () {
+      this.elapsedTime = parseInt(window.localStorage.getItem('elapsedTime')) || 0
+      var i = 0
+      for (; i < this.elapsedTime; i++) {
+        this.computeGame()
+      }
+    },
     nextAmountToWait (givenStep) {
       if (this.developerMode) {
         return 4
@@ -102,6 +112,7 @@ export default {
       setInterval(() => {
         this.elapsedTime++
         this.computeGame()
+        this.saveProgression()
       }, 1000)
     },
     computeGame () {
@@ -116,11 +127,11 @@ export default {
       }
     },
     taunt (messages) {
-      console.log(arguments)
       this.tauntMessages = arguments
     }
   },
   mounted () {
+    this.loadProgression()
     this.countDown()
   }
 }
