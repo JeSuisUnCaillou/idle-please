@@ -24,6 +24,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #2c3e50;
+}
+#app, button {
   color: #bad4ee;
 }
 .container {

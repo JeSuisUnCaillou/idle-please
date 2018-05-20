@@ -5,7 +5,7 @@
         <fading-message duration="-1" v-bind:trigger="visibleElapsedTime">
           <div class="bigger">Time wasted</div>
           <i class="fas fa-hourglass-end"></i>
-          <duration :amount="elapsedTime"></duration>
+          <duration :amount="elapsedTime" fallback="none"></duration>
         </fading-message>
         <div class="levels">
           <fading-message duration="-1" v-bind:trigger="visibleLevels" class="bigger">
@@ -29,6 +29,11 @@
       <div class="taunt">
         <fading-multiple-messages :messages="tauntMessages" duration="3" offset="1" >
         </fading-multiple-messages>
+      </div>
+      <div class="bottom-nav">
+        <button class="reset-button bigger" @click="resetProgression">
+          <i class="fas fa-power-off"></i>
+        </button>
       </div>
     </div>
   </div>
@@ -60,7 +65,7 @@ export default {
         2: () => { this.visibleNextDuration = true; this.taunt('You can now see the duration of the current level') },
         3: () => { this.visibleElapsedTime = true; this.taunt('Congrats !', `You just wasted ${this.elapsedTime + 1} seconds`) },
         4: () => { this.taunt('Got nothing else to do, eh ?') },
-        5: () => { this.visibleDots = true; this.taunt('Here', 'have some animated dots') },
+        5: () => { this.dotsDuration = 1; this.visibleDots = true; this.taunt('Here', 'have some animated dots') },
         6: () => { this.taunt('Are you entertained ?') },
         7: () => { this.visibleReverseDots = true; this.taunt('Synchronized reversed dots ?!', 'Wow O_O') },
         8: () => { this.dotsDuration = 0.1; this.taunt('Let\'s speed up these dots.', 'Do you like speed ?', 'I do') },
@@ -82,11 +87,16 @@ export default {
     }
   },
   methods: {
+    resetProgression () {
+      this.step = 0
+      this.elapsedTime = 0
+    },
     saveProgression () {
       window.localStorage.setItem('elapsedTime', this.elapsedTime)
     },
     loadProgression () {
       this.elapsedTime = parseInt(window.localStorage.getItem('elapsedTime')) || 0
+      this.step = 0
       var i = 0
       for (; i < this.elapsedTime; i++) {
         this.computeGame()
@@ -100,6 +110,9 @@ export default {
       }
     },
     totalAmountToWait (givenStep) {
+      if (givenStep < 0) {
+        return 0
+      }
       let total = 0
       let s = 0
       for (; s < givenStep; s++) {
@@ -161,6 +174,14 @@ export default {
 .center-bar {
   text-align: center;
 }
+.bottom-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.bottom-nav {
+  width: 100%;
+}
 .taunt {
   margin-top: 10px;
   text-align: center;
@@ -181,5 +202,13 @@ export default {
 }
 .fa-hourglass-start {
   margin-right: 5px;
+}
+.reset-button {
+  background-color: transparent;
+  border: unset;
+}
+.reset-button:focus {
+  outline: none;
+  color: #ffffff;
 }
 </style>

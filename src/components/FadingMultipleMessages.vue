@@ -1,6 +1,6 @@
 <template>
   <div>
-    <fading-message v-for="(message, index) in messages" :key="index" :duration="duration" :trigger="realTrigger" :offset="subOffset(index)">
+    <fading-message class="message" v-for="(message, index) in messages" :key="index" :duration="duration" :trigger="realTrigger" :offset="subOffset(index)">
       {{message}}
     </fading-message>
   </div>
@@ -34,5 +34,7 @@ export default {
 </script>
 
 <style scoped>
-
+.message {
+  margin-top: 5px;
+}
 </style>
