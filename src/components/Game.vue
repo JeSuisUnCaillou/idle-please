@@ -6,7 +6,7 @@
           <div class="elapsed-time-container clickable" @click="addOneSecond">
             <div class="bigger">Time wasted</div>
             <i class="fas fa-hourglass-end"></i>
-            <duration :amount="elapsedTime" fallback="-"></duration>
+            <duration :amount="displayedElapsedTime" fallback="-"></duration>
             <fading-message duration="-1" :trigger="visibleSecondsAdded">
               <i class="fas fa-plus"></i>
               <duration :amount="secondsAdded" fallback="0 s"></duration>
@@ -104,6 +104,9 @@ export default {
       } else {
         return this.nextAmountToWait(this.step) - 1
       }
+    },
+    displayedElapsedTime () {
+      return this.visibleSecondsAdded ? this.elapsedTime - this.secondsAdded : this.elapsedTime
     }
   },
   methods: {
