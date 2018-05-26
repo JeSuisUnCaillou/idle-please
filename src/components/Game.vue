@@ -197,6 +197,13 @@ export default {
 }
 </script>
 
+
+<style>
+  .highlight {
+    color: #ffffff;
+  }
+</style>
+
 <style scoped>
 .game {
   flex-grow: 1;
@@ -206,6 +213,9 @@ export default {
   align-items: center;
   flex-direction: column;
   padding: 15px;
+}
+.game, button {
+  color: #bad4ee;
 }
 .dual-container {
   display: flex;

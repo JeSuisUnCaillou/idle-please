@@ -20,20 +20,6 @@ body {
   margin: 0;
 }
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #2c3e50;
 }
-#app, button {
-  color: #bad4ee;
-}
-.container {
-  margin: auto;
-  /* max-width: 800px;
-  max-height: 450px; */
-}
-.highlight {
-  color: #ffffff;
-}
+
 </style>
