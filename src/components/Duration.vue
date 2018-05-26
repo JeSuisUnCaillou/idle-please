@@ -1,7 +1,7 @@
 <template>
   <span>
     <span v-if="amount > 0">
-      <span v-if="days > 0">
+      <span class="block" v-if="days > 0">
         <span class="highlight">
           {{days}}
         </span>
@@ -9,7 +9,7 @@
           {{days > 1 ? 'days' : 'day'}}
         </span>
       </span>
-      <span v-if="hours > 0">
+      <span class="block" v-if="hours > 0">
         <span class="highlight">
           {{hours}}
         </span>
@@ -17,7 +17,7 @@
           {{hours > 1 ? 'hours' : 'hour'}}
         </span>
       </span>
-      <span v-if="minutes > 0">
+      <span class="block" v-if="minutes > 0">
         <span class="highlight">
           {{minutes}}
         </span>
@@ -25,7 +25,7 @@
           min
         </span>
       </span>
-      <span v-if="seconds > 0">
+      <span class="block" v-if="seconds > 0">
         <span class="highlight">
           {{seconds}}
         </span>
@@ -62,5 +62,8 @@ export default {
 </script>
 
 <style scoped>
-
+.block {
+  display: inline-block;
+  white-space: nowrap;
+}
 </style>

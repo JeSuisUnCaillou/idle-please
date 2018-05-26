@@ -23,7 +23,9 @@
         </fading-message>
         <div class="levels">
           <fading-message duration="-1" v-bind:trigger="visibleLevels" class="bigger">
-            Level <span class="highlight">{{step}}</span>
+            <span class="level-text">
+              Level <span class="highlight">{{step}}</span>
+            </span>
           </fading-message>
           <fading-message duration="-1" v-bind:trigger="visibleNextDuration">
             <div class="amount-container right">
@@ -190,9 +192,9 @@ export default {
 </script>
 
 <style>
-  .highlight {
-    color: #ffffff;
-  }
+.highlight {
+  color: #ffffff;
+}
 </style>
 
 <style scoped>
@@ -248,7 +250,12 @@ export default {
 }
 .levels {
   text-align: right;
+}
+.level-text {
   white-space: nowrap;
+}
+.elapsed-time-container {
+  padding-right: 5px;
 }
 .nb-clicks {
   font-size: 0.75em;
@@ -277,6 +284,7 @@ export default {
 }
 .icon {
   width: 1.7em;
+  min-width: 1.7em;
   text-align: center;
   margin: 0 !important;
 }
