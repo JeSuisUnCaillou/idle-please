@@ -68,7 +68,6 @@ export default {
   data () {
     return {
       ticker: null,
-      developerMode: false,
       elapsedTime: 0,
       step: 0,
       addedSeconds: 0,
@@ -111,17 +110,13 @@ export default {
   },
   computed: {
     cooldown () {
-      return this.totalAmountToWait(this.step) - this.elapsedTime
+      return this.totalAmountToWait(this.step) - (this.elapsedTime + this.addedSeconds)
     },
     currentLevelDuration () {
-      if (this.developerMode) {
-        return this.nextAmountToWait(this.step)
-      } else {
-        return this.nextAmountToWait(this.step) - 1
-      }
+      return this.nextAmountToWait(this.step) - 1
     },
     displayedElapsedTime () {
-      return this.visibleaddedSeconds ? this.elapsedTime - this.addedSeconds : this.elapsedTime
+      return this.visibleaddedSeconds ? this.elapsedTime : this.elapsedTime + this.addedSeconds
     }
   },
   methods: {
@@ -146,15 +141,10 @@ export default {
       }
     },
     addOneSecond () {
-      this.elapsedTime += 1
       this.addedSeconds += 1
     },
     nextAmountToWait (givenStep) {
-      if (this.developerMode) {
-        return 4
-      } else {
-        return 5 + givenStep
-      }
+      return 5 + givenStep
     },
     totalAmountToWait (givenStep) {
       let total = 0
