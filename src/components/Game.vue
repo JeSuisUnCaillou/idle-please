@@ -126,6 +126,7 @@ export default {
       this.elapsedTime = 0
       this.addedSeconds = 0
       this.saveProgression()
+      this.startCountDown()
     },
     saveProgression () {
       window.localStorage.setItem('elapsedTime', this.elapsedTime)
@@ -154,7 +155,8 @@ export default {
       }
       return total
     },
-    countDown () {
+    startCountDown () {
+      clearInterval(this.ticker)
       this.computeGame()
       this.ticker = setInterval(() => {
         this.elapsedTime++
@@ -179,7 +181,7 @@ export default {
   },
   mounted () {
     this.loadProgression()
-    this.countDown()
+    this.startCountDown()
   },
   beforeDestroy () {
     clearInterval(this.ticker)
