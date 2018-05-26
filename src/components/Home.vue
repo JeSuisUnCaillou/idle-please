@@ -22,7 +22,6 @@ export default {
   }
 }
 </script>
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .container {
@@ -31,10 +30,8 @@ export default {
   background-color: #E0BB97;
   background: rgb(2,0,36);
   background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(60,60,93,1) 35%, rgba(163,197,204,1) 100%);
-
   display: flex;
   flex-direction: column;
-  
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -19,7 +19,4 @@ html, body, #app, main {
 body {
   margin: 0;
 }
-#app {
-}
-
 </style>

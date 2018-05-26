@@ -197,7 +197,6 @@ export default {
 }
 </script>
 
-
 <style>
   .highlight {
     color: #ffffff;
