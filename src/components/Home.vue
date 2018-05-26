@@ -1,12 +1,13 @@
 <template>
-  <div class="container">
-    <div class="titles">
-      <h1><span class="highlight">Idle,</span> please</h1>
-      <div>The perfectly <span class="highlight">pointless</span> game</div>
-    </div>
-
-    <div class="game-container centered-content">
-      <game></game>
+  <div class="bg-container">
+    <div class="container">
+      <div class="titles">
+        <h1><span class="highlight">Idle,</span> please</h1>
+        <div>The perfectly <span class="highlight">pointless</span> game</div>
+      </div>
+      <div class="game-container">
+        <game></game>
+      </div>
     </div>
   </div>
 </template>
@@ -24,12 +25,15 @@ export default {
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.container {
+.bg-container {
   height: 100%;
-  padding: 0 15px;
-  background-color: #E0BB97;
   background: rgb(2,0,36);
   background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(60,60,93,1) 35%, rgba(163,197,204,1) 100%);
+}
+.container {
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 15px;
   display: flex;
   flex-direction: column;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -56,5 +60,14 @@ h1 {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+}
+
+@media only screen and (min-width: 768px) {
+  .game-container {
+    max-height: 600px;
+  }
+  .container {
+    max-width: 600px;
+  }
 }
 </style>
