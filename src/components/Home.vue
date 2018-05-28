@@ -27,8 +27,12 @@ export default {
 <style scoped>
 .bg-container {
   height: 100%;
-  background: rgb(2,0,36);
-  background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(60,60,93,1) 35%, rgba(163,197,204,1) 100%);
+  /* background: rgb(2,0,36);
+  background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(60,60,93,1) 35%, rgba(163,197,204,1) 100%); */
+  background-color: black;
+  background-image: url('/static/images/sunset.jpg');
+  background-position: bottom;
+  background-size: cover;
 }
 .container {
   height: 100%;
@@ -55,7 +59,7 @@ h1 {
   background-position: center;
   background-size: cover;
   border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0,0,0,.26);
+  box-shadow: 0 2px 5px rgba(0,0,0,1);
 
   flex-grow: 1;
   display: flex;
