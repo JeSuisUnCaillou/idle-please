@@ -66,7 +66,7 @@ export default (game) => {
       if (game.addedSeconds > 0) {
         game.taunt('Let\'s see how many times you cheated', `Oh not bad, ${game.addedSeconds} click${game.addedSeconds > 1 ? 's' : ''} !`)
       } else {
-        game.topTaunt('You didn\'t cheat once !', 'Try clicking top left')
+        game.taunt('You didn\'t cheat once !', 'Try clicking top left')
       }
     },
     13: () => {
@@ -80,7 +80,7 @@ export default (game) => {
     },
     16: () => {
       game.taunt('Well', 'What did you expect ?')
-      game.topTaunt('', '', '', 'I expected more')
+      // game.topTaunt('', '', '', 'I expected more')
     },
     17: () => {
       game.taunt('One day there will be', 'an e-sport version', 'of this game')

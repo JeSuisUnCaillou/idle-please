@@ -35,10 +35,6 @@
           </fading-message>
         </div>
       </div>
-      <div class="top-taunt">
-        <fading-multiple-messages :messages="topTauntMessages" duration="3" offset="1" >
-        </fading-multiple-messages>
-      </div>
     </div>
     <div class="center-bar">
       <div class="even-bigger">
@@ -79,7 +75,6 @@ export default {
       step: 0,
       addedSeconds: 0,
       tauntMessages: [],
-      topTauntMessages: [],
       hasResetted: false,
       visibleElapsedTime: false,
       visibleLevels: false,
@@ -161,9 +156,6 @@ export default {
     },
     taunt (messages) {
       this.tauntMessages = [].slice.call(arguments)
-    },
-    topTaunt (messages) {
-      this.topTauntMessages = [].slice.call(arguments)
     }
   },
   mounted () {
