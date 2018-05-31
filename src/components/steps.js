@@ -16,7 +16,11 @@ export default (game) => {
     },
     3: () => {
       game.visibleElapsedTime = true
-      game.taunt('Congrats !', `You just wasted ${game.elapsedTime + 2} seconds`, 'of your miserable life')
+      if (game.hasResetted) {
+        game.taunt('Congrats !', `You just wasted ${game.elapsedTime + 2} seconds`, 'AGAIN')
+      } else {
+        game.taunt('Congrats !', `You just wasted ${game.elapsedTime + 2} seconds`, 'of your miserable life')
+      }
     },
     4: () => {
       game.taunt('I said pay attention', '...', 'You didn\t see that ?')
@@ -27,7 +31,11 @@ export default (game) => {
       game.dotsDuration = 1
     },
     6: () => {
-      !game.hasResetted && game.addedSeconds <= 0 ? game.taunt('I bet you didn\'t find out', 'how to cheat yet') : game.taunt('Are you entertained ?')
+      if (game.addedSeconds <= 0) {
+        game.taunt('I bet you didn\'t find out', 'how to cheat')
+      } else {
+        game.taunt('Are you entertained ?')
+      }
     },
     7: () => {
       game.hasResetted ? game.taunt('I\'m warning you', 'Don\'t reset the game again') : game.taunt('Wow O_O', 'Synchronized reversed dots !', 'So awesome')
@@ -42,13 +50,16 @@ export default (game) => {
       }
     },
     9: () => {
-      game.visibleResetButton = true; game.taunt('Why would you start over a game', 'designed to waste your time ?')
+      game.visibleResetButton = true
+      game.taunt('Why would you start over a game', 'designed to waste your time ?')
     },
     10: () => {
-      game.dotsDuration = 0.1; game.taunt('Let\'s speed up these dots.', 'Do you like speed ?', '...', 'Weeeeee')
+      game.dotsDuration = 0.1
+      game.taunt('Let\'s speed up these dots.', 'Do you like speed ?', '...', 'Weeeeee')
     },
     11: () => {
-      game.dotsDuration = 1; game.taunt('Ok, that was way too fast', 'Let\'s slow down a bit')
+      game.dotsDuration = 1
+      game.taunt('Ok, that was way too fast', 'Let\'s slow down a bit')
     },
     12: () => {
       game.visibleaddedSeconds = true
