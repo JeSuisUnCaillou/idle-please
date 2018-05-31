@@ -80,6 +80,7 @@ export default (game) => {
     },
     16: () => {
       game.taunt('Well', 'What did you expect ?')
+      game.topTaunt('', '', '', 'I expected more')
     },
     17: () => {
       game.taunt('One day there will be', 'an e-sport version', 'of this game')
