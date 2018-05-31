@@ -104,7 +104,7 @@ export default (game) => {
       game.taunt('Tell me you didn\'t jump', '', 'I really hope you did')
     },
     25: () => {
-      game.taunt('There was a gorilla', 'in the level 23', 'And you didn\'t see it')
+      game.taunt('There was a gorilla', 'passing through, level 23', 'And you didn\'t see it')
     }
   }
 }
