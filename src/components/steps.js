@@ -8,7 +8,7 @@ export default (game) => {
     },
     1: () => {
       game.visibleLevels = true
-      game.taunt(`You're level ${game.step + 1} now`, game.hasResetted ? 'Why would you do that ?' : 'Well played !')
+      game.taunt(`You're level ${game.step + 1} now`, game.hasResetted ? 'Why would you do that ?' : '')
     },
     2: () => {
       game.visibleNextDuration = true
@@ -55,7 +55,7 @@ export default (game) => {
       if (game.addedSeconds > 0) {
         game.taunt('Let\'s see how many times you cheated', `Oh not bad, ${game.addedSeconds} click${game.addedSeconds > 1 ? 's' : ''} !`)
       } else {
-        game.taunt('You didn\'t cheat once !', 'Well, you can add seconds', 'by clicking top left')
+        game.topTaunt('You didn\'t cheat once !', 'Try clicking top left')
       }
     },
     13: () => {
