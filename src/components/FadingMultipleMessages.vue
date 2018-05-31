@@ -1,7 +1,7 @@
 <template>
   <div>
-    <fading-message class="message" v-for="(message, index) in messages" :key="index" :duration="duration" :trigger="trigger" :offset="subOffset(index)">
-      {{message}}
+    <fading-message class="message" v-for="(message, index) in strippedMessages" :key="index" :duration="duration" :trigger="trigger" :offset="subOffset(index)">
+      <span :class="{ 'is-nice': isNice(index) }">{{message}}</span>
     </fading-message>
   </div>
 </template>
@@ -16,12 +16,27 @@ export default {
     return {
       offsets: {},
       trigger: false,
-      timeoutId: null
+      timeoutId: null,
+      isNiceCharacter: '#'
+    }
+  },
+  computed: {
+    strippedMessages () {
+      return this.messages.map((m) => {
+        if (m[0] === this.isNiceCharacter) {
+          return m.slice(1)
+        } else {
+          return m
+        }
+      })
     }
   },
   methods: {
     subOffset (index) {
       return this.offset * index
+    },
+    isNice (index) {
+      return this.messages[index][0] === this.isNiceCharacter
     }
   },
   watch: {
@@ -40,5 +55,8 @@ export default {
 <style scoped>
 .message {
   margin-top: 5px;
+}
+.is-nice {
+  color: #ff9f54;
 }
 </style>

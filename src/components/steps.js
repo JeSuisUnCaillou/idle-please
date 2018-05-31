@@ -4,15 +4,20 @@ export default (game) => {
       game.taunt('Come on...', 'You\'re still here ?')
     },
     0: () => {
-      game.hasResetted ? game.taunt('You just reset the game ...') : game.taunt('Wait for it')
+      if (game.hasResetted){
+        game.visibleResetButton = true
+        game.taunt('You just reset the game ...')
+      } else {
+        game.taunt('Wait for it')
+      }
     },
     1: () => {
       game.visibleLevels = true
-      game.taunt(`You're level ${game.step + 1} now`, game.hasResetted ? 'Why would you do that ?' : '')
+      game.taunt(`You're level ${game.step + 1} now`, game.hasResetted ? 'Why would you do that ?' : '#Well played !')
     },
     2: () => {
       game.visibleNextDuration = true
-      game.hasResetted ? game.taunt('I hope you regret clicking reset') : game.taunt('Pay attention', 'I can be tricky')
+      game.hasResetted ? game.taunt('I hope you regret clicking reset') : game.taunt('#Pay attention', '#This game is tricky')
     },
     3: () => {
       game.visibleElapsedTime = true
@@ -32,7 +37,7 @@ export default (game) => {
     },
     6: () => {
       if (game.addedSeconds <= 0) {
-        game.taunt('I bet you didn\'t find out', 'how to cheat')
+        game.taunt('I bet you didn\'t find out', '#How to cheat')
       } else {
         game.taunt('Are you entertained ?')
       }
@@ -46,7 +51,7 @@ export default (game) => {
       if (game.hasResetted) {
         game.taunt('You can reset the game', 'with the bottom left button', 'BUT YOU ARLEADY KNOW', 'DON\'T YOU ?')
       } else {
-        game.taunt('You can reset the game now', 'Click on the bottom left button', '...', 'But I wouldn\'t do that')
+        game.taunt('You can reset the game now', 'Click on the bottom left button', '...', '#But I wouldn\'t do that')
       }
     },
     9: () => {
@@ -66,7 +71,7 @@ export default (game) => {
       if (game.addedSeconds > 0) {
         game.taunt('Let\'s see how many times you cheated', `Oh not bad, ${game.addedSeconds} click${game.addedSeconds > 1 ? 's' : ''} !`)
       } else {
-        game.taunt('You didn\'t cheat once !', 'Try clicking top left')
+        game.taunt('You didn\'t cheat once !', '#Try clicking top left')
       }
     },
     13: () => {
@@ -80,7 +85,6 @@ export default (game) => {
     },
     16: () => {
       game.taunt('Well', 'What did you expect ?')
-      // game.topTaunt('', '', '', 'I expected more')
     },
     17: () => {
       game.taunt('One day there will be', 'an e-sport version', 'of this game')
@@ -102,13 +106,19 @@ export default (game) => {
       game.taunt('I tell you to wait', 'and you just wait', '...', 'Try jumping around')
     },
     24: () => {
-      game.taunt('Tell me you didn\'t jump', '', 'I really hope you did')
+      game.taunt('Tell me you didn\'t jump', '', '', '', '#I really hope you did')
     },
     25: () => {
-      game.taunt('There was a gorilla', 'passing through, level 23', 'And you didn\'t see it')
+      game.taunt('There was a gorilla', 'during level 23', 'And you didn\'t see it')
     },
     26: () => {
-      game.taunt('The reset button', 'is so tempting') // need increase size of reset button
+      game.taunt('The reset button', 'is so tempting', '#But seriously, don\'t') // need increase size of reset button
+    },
+    27: () => {
+      game.taunt('Sometimes', 'I hear an orange voice talking', '', '', '#So what ?', 'OH MY GOD IT\'S REAL ! °o°')
+    },
+    28: () => {
+      game.taunt('#You shouldn\'t listen to him', 'Hey !', '#He\'s just an idiot', 'HEY !', 'I\'m right here you know ?')
     }
   }
 }
