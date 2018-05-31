@@ -1,25 +1,25 @@
 export default (game) => {
   return {
     default: () => {
-      game.taunt('LOL', 'You\'re still here ?')
+      game.taunt('Come on...', 'You\'re still here ?')
     },
     0: () => {
       game.hasResetted ? game.taunt('You just reset the game ...') : game.taunt('Wait for it')
     },
     1: () => {
       game.visibleLevels = true
-      game.taunt(`You're level ${game.step + 1} now`, game.hasResetted ? 'Why would you do game ?' : 'Well played !')
+      game.taunt(`You're level ${game.step + 1} now`, game.hasResetted ? 'Why would you do that ?' : 'Well played !')
     },
     2: () => {
       game.visibleNextDuration = true
-      game.hasResetted ? game.taunt('I hope you regret clicking reset') : game.taunt('You can see the duration', 'of the current level', 'top right')
+      game.hasResetted ? game.taunt('I hope you regret clicking reset') : game.taunt('Pay attention', 'I can be tricky')
     },
     3: () => {
       game.visibleElapsedTime = true
       game.taunt('Congrats !', `You just wasted ${game.elapsedTime + 2} seconds`, 'of your miserable life')
     },
     4: () => {
-      game.taunt('Got nothing else to do, eh ?', 'Well, me neither, so...', 'Let\'s do game')
+      game.taunt('I said pay attention', '...', 'You didn\t see that ?', 'Oh boy, you\'re slow')
     },
     5: () => {
       game.visibleDots ? game.taunt('Here, have some animated...', 'Wait', 'YOU ALREADY HAVE THE DOTS') : game.taunt('Here,', 'have some animated dots')
@@ -27,7 +27,7 @@ export default (game) => {
       game.dotsDuration = 1
     },
     6: () => {
-      game.taunt('Are you entertained ?')
+      !game.hasResetted && game.addedSeconds <= 0 ? game.taunt('I bet you didn\'t find out', 'how to cheat yet') : game.taunt('Are you entertained ?')
     },
     7: () => {
       game.hasResetted ? game.taunt('I\'m warning you', 'Don\'t reset the game again') : game.taunt('Wow O_O', 'Synchronized reversed dots !', 'So awesome')
@@ -35,16 +35,16 @@ export default (game) => {
     },
     8: () => {
       game.visibleResetButton = true
-      game.hasResetted ? game.taunt('You can reset the game', 'with the bottom left button', 'BUT YOU ARLEADY KNOW game', 'DON\'T YOU ?') : game.taunt('You can reset the game now', 'Click on the bottom left button', 'But I wouldn\'t do game')
+      game.hasResetted ? game.taunt('You can reset the game', 'with the bottom left button', 'BUT YOU ARLEADY KNOW', 'DON\'T YOU ?') : game.taunt('You can reset the game now', 'Click on the bottom left button', 'But I wouldn\'t do that')
     },
     9: () => {
       game.visibleResetButton = true; game.taunt('Why would you start over a game', 'designed to waste your time ?')
     },
     10: () => {
-      game.dotsDuration = 0.1; game.taunt('Let\'s speed up these dots.', 'Do you like speed ?', '...', 'I do')
+      game.dotsDuration = 0.1; game.taunt('Let\'s speed up these dots.', 'Do you like speed ?', '...', 'Weeeeee')
     },
     11: () => {
-      game.dotsDuration = 1; game.taunt('Ok, game was way too fast', 'Let\'s slow down a bit')
+      game.dotsDuration = 1; game.taunt('Ok, that was way too fast', 'Let\'s slow down a bit')
     },
     12: () => {
       game.visibleaddedSeconds = true
@@ -67,7 +67,7 @@ export default (game) => {
       game.taunt('Well', 'What did you expect ?')
     },
     17: () => {
-      game.taunt('One day there will be', 'an e-sport version', 'of game game')
+      game.taunt('One day there will be', 'an e-sport version', 'of this game')
     },
     18: () => {
       game.taunt('Available on Battle.net', `around the year ${(new Date()).getFullYear() + 1}`, '...', 'just wait')
@@ -78,6 +78,15 @@ export default (game) => {
     },
     21: () => {
       game.taunt('You\'re stubborn, heh ?', '...', 'Me too')
+    },
+    22: () => {
+      game.taunt('Wait')
+    },
+    23: () => {
+      game.taunt('I tell you to wait', 'and you just wait', '...', 'Try jumping around')
+    },
+    24: () => {
+      game.taunt('Tell me you didn\'t jump', '', 'I really hope you did')
     }
   }
 }
