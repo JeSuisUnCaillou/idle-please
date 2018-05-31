@@ -64,6 +64,7 @@ import FadingMessage from './FadingMessage.vue'
 import FadingMultipleMessages from './FadingMultipleMessages.vue'
 import Duration from './Duration.vue'
 import AnimatedDots from './AnimatedDots.vue'
+import steps from './steps.js'
 export default {
   name: 'game',
   components: { FadingMessage, FadingMultipleMessages, Duration, AnimatedDots },
@@ -83,31 +84,7 @@ export default {
       visibleNextDuration: false,
       visibleResetButton: false,
       dotsDuration: 1,
-      steps: {
-        default: () => { this.taunt('LOL', 'You\'re still here ?') },
-        0: () => { this.hasResetted ? this.taunt('You just reset the game ...') : this.taunt('Wait for it') },
-        1: () => { this.visibleLevels = true; this.taunt(`You're level ${this.step + 1} now`, this.hasResetted ? 'Why would you do that ?' : 'Well played !') },
-        2: () => { this.visibleNextDuration = true; this.hasResetted ? this.taunt('I hope you regret clicking reset') : this.taunt('You can see the duration', 'of the current level', 'top right') },
-        3: () => { this.visibleElapsedTime = true; this.taunt('Congrats !', `You just wasted ${this.elapsedTime + 2} seconds`, 'of your miserable life') },
-        4: () => { this.taunt('Got nothing else to do, eh ?', 'Well, me neither, so...', 'Let\'s do this') },
-        5: () => { this.visibleDots ? this.taunt('Here, have some animated...', 'Wait', 'YOU ALREADY HAVE THE DOTS') : this.taunt('Here,', 'have some animated dots'); this.visibleDots = true; this.dotsDuration = 1 },
-        6: () => { this.taunt('Are you entertained ?') },
-        7: () => { this.hasResetted ? this.taunt('I\'m warning you', 'Don\'t reset the game again') : this.taunt('Wow O_O', 'Synchronized reversed dots !', 'So awesome'); this.visibleReverseDots = true },
-        8: () => { this.visibleResetButton = true; this.hasResetted ? this.taunt('You can reset the game', 'with the bottom left button', 'BUT YOU ARLEADY KNOW THAT', 'DON\'T YOU ?') : this.taunt('You can reset the game now', 'Click on the bottom left button', 'But I wouldn\'t do that') },
-        9: () => { this.visibleResetButton = true; this.taunt('Why would you start over a game', 'designed to waste your time ?') },
-        10: () => { this.dotsDuration = 0.1; this.taunt('Let\'s speed up these dots.', 'Do you like speed ?', '...', 'I do') },
-        11: () => { this.dotsDuration = 1; this.taunt('Ok, that was way too fast', 'Let\'s slow down a bit') },
-        12: () => { this.visibleaddedSeconds = true; this.addedSeconds > 0 ? this.taunt('Let\'s see how many times you cheated', `Oh not bad, ${this.addedSeconds} click${this.addedSeconds > 1 ? 's' : ''} !`) : this.taunt('You didn\'t cheat once !', 'Well, you can add seconds', 'by clicking top left') },
-        13: () => { this.taunt('Something extremely interesting', 'should happen next level') },
-        14: () => { this.taunt('Nothing ?', 'Maybe the next level, then', 'You\'ll see') },
-        15: () => { this.taunt('I\'m sure something will happen', '...', 'Soon') },
-        16: () => { this.taunt('Well', 'What did you expect ?') },
-        17: () => { this.taunt('One day there will be', 'an e-sport version', 'of this game') },
-        18: () => { this.taunt('Available on Battle.net', `around the year ${(new Date()).getFullYear() + 1}`, '...', 'just wait') },
-        // 19: () => {},
-        20: () => { this.taunt('I\'m warning you', 'Nothing else to see here', 'Go home', 'The game is over') },
-        21: () => { this.taunt('You\'re stubborn, heh ?', '...', 'Me too') }
-      }
+      steps: steps(this)
     }
   },
   computed: {
