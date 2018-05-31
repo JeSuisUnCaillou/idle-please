@@ -106,6 +106,9 @@ export default (game) => {
     },
     25: () => {
       game.taunt('There was a gorilla', 'passing through, level 23', 'And you didn\'t see it')
+    },
+    26: () => {
+      game.taunt('The reset button', 'is so tempting') // need increase size of reset button
     }
   }
 }
