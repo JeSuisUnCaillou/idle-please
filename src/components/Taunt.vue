@@ -9,7 +9,7 @@
 <script>
 import FadingMessage from './FadingMessage.vue'
 export default {
-  name: 'fading-mutliple-messages',
+  name: 'taunt',
   components: { FadingMessage },
   props: ['messages', 'duration', 'offset'],
   data () {

@@ -45,8 +45,8 @@
     </div>
     <div class="bottom-bar">
       <div class="taunt">
-        <fading-multiple-messages :messages="tauntMessages" duration="3" offset="1" >
-        </fading-multiple-messages>
+        <taunt :messages="tauntMessages" duration="3" offset="1" >
+        </taunt>
       </div>
       <div class="bottom-nav">
         <fading-message duration="-1" v-bind:trigger="visibleResetButton">
@@ -61,13 +61,13 @@
 
 <script>
 import FadingMessage from './FadingMessage.vue'
-import FadingMultipleMessages from './FadingMultipleMessages.vue'
+import Taunt from './Taunt.vue'
 import Duration from './Duration.vue'
 import AnimatedDots from './AnimatedDots.vue'
 import steps from './steps.js'
 export default {
   name: 'game',
-  components: { FadingMessage, FadingMultipleMessages, Duration, AnimatedDots },
+  components: { FadingMessage, Taunt, Duration, AnimatedDots },
   data () {
     return {
       ticker: null,

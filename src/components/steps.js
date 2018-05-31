@@ -4,7 +4,7 @@ export default (game) => {
       game.taunt('Come on...', 'You\'re still here ?')
     },
     0: () => {
-      if (game.hasResetted){
+      if (game.hasResetted) {
         game.visibleResetButton = true
         game.taunt('You just reset the game ...')
       } else {
