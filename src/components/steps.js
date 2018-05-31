@@ -19,7 +19,7 @@ export default (game) => {
       game.taunt('Congrats !', `You just wasted ${game.elapsedTime + 2} seconds`, 'of your miserable life')
     },
     4: () => {
-      game.taunt('I said pay attention', '...', 'You didn\t see that ?', 'Oh boy, you\'re slow')
+      game.taunt('I said pay attention', '...', 'You didn\t see that ?')
     },
     5: () => {
       game.visibleDots ? game.taunt('Here, have some animated...', 'Wait', 'YOU ALREADY HAVE THE DOTS') : game.taunt('Here,', 'have some animated dots')
@@ -35,7 +35,11 @@ export default (game) => {
     },
     8: () => {
       game.visibleResetButton = true
-      game.hasResetted ? game.taunt('You can reset the game', 'with the bottom left button', 'BUT YOU ARLEADY KNOW', 'DON\'T YOU ?') : game.taunt('You can reset the game now', 'Click on the bottom left button', 'But I wouldn\'t do that')
+      if (game.hasResetted) {
+        game.taunt('You can reset the game', 'with the bottom left button', 'BUT YOU ARLEADY KNOW', 'DON\'T YOU ?')
+      } else {
+        game.taunt('You can reset the game now', 'Click on the bottom left button', '...', 'But I wouldn\'t do that')
+      }
     },
     9: () => {
       game.visibleResetButton = true; game.taunt('Why would you start over a game', 'designed to waste your time ?')
