@@ -119,6 +119,10 @@ export default (game) => {
     },
     28: () => {
       game.taunt('#You shouldn\'t listen to him', 'Hey !', '#He\'s just an idiot', 'HEY !', 'I\'m right here you know ?')
+    },
+    30: () => {
+      game.taunt('#For your stubbornness,', '#you deserve a price.', '#Here, have a pause button.')
+      game.visiblePauseButton = true
     }
   }
 }

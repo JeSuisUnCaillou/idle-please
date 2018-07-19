@@ -54,6 +54,11 @@
             <i class="fas fa-power-off"></i>
           </button>
         </fading-message>
+        <fading-message duration="-1" v-bind:trigger="visiblePauseButton">
+          <button class="reset-button clickable bigger" @click="pause">
+            <i class="fas fa-pause"></i>
+          </button>
+        </fading-message>
       </div>
     </div>
   </div>
@@ -83,6 +88,7 @@ export default {
       visibleReverseDots: false,
       visibleNextDuration: false,
       visibleResetButton: false,
+      visiblePauseButton: false,
       dotsDuration: 1,
       steps: steps(this)
     }
@@ -99,6 +105,9 @@ export default {
     }
   },
   methods: {
+    pause () {
+
+    },
     resetProgression () {
       this.hasResetted = true
       this.step = 0
@@ -209,6 +218,8 @@ export default {
 }
 .bottom-nav {
   width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 .clickable {
   cursor: pointer;
