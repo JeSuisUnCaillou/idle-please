@@ -138,7 +138,7 @@ export default (game) => {
     34: () => {
       game.taunt('Ok, show him the leaderboard.', '#YES !', '', '', '#sweet leaderboard', 'There is no leaderboard')
     },
-    50: () => {
+    49: () => {
       game.taunt('#For your stubbornness,', '#you deserve a price.', '#Here, have a pause button.')
       game.visiblePauseButton = true
     }
