@@ -278,6 +278,7 @@ export default {
   padding: 0 0 0 0;
   transition: all 1s cubic-bezier(.4,0,.2,1);
   font-size: 30px;
+  width: 35px;
 }
 .bot-button:focus {
   outline: none;
