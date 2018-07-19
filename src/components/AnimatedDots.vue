@@ -17,7 +17,8 @@ export default {
   data () {
     return {
       dots: '',
-      intervalID: null
+      intervalID: null,
+      isPaused: false
     }
   },
   computed: {
@@ -38,9 +39,19 @@ export default {
       }
     },
     setInterval () {
+      clearInterval(this.intervalID)
       this.intervalID = setInterval(() => {
         this.cycleDots()
       }, this.duration * 1000)
+    },
+    pause () {
+      if (this.isPaused) {
+        this.setInterval()
+      } else {
+        clearInterval(this.intervalID)
+        this.intervalID = null
+      }
+      this.isPaused = !this.isPaused
     }
   },
   mounted () {

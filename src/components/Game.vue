@@ -38,7 +38,7 @@
     </div>
     <div class="center-bar">
       <div class="even-bigger">
-        <animated-dots nbDots="3" v-bind:invisibleDots="!visibleDots" v-bind:invisibleReverseDots="!visibleReverseDots" v-bind:duration="dotsDuration">
+        <animated-dots ref="animatedDots" nbDots="3" v-bind:invisibleDots="!visibleDots" v-bind:invisibleReverseDots="!visibleReverseDots" v-bind:duration="dotsDuration">
           Wait for <duration :amount="cooldown" fallback="it"></duration>
         </animated-dots>
       </div>
@@ -120,6 +120,7 @@ export default {
         this.ticker = null
       }
       this.isPaused = !this.isPaused
+      this.$refs.animatedDots.pause()
     },
     resetProgression () {
       this.hasResetted = true
