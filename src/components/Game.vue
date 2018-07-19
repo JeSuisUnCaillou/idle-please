@@ -112,6 +112,7 @@ export default {
   },
   methods: {
     pause () {
+      this.visiblePauseButton = true
       if (this.isPaused) {
         this.startCountDown()
       } else {
