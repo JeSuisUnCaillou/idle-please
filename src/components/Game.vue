@@ -50,12 +50,12 @@
       </div>
       <div class="bottom-nav">
         <fading-message duration="-1" v-bind:trigger="visibleResetButton">
-          <button class="reset-button clickable bigger" @click="resetProgression">
+          <button class="bot-button clickable bigger" @click="resetProgression">
             <i class="fas fa-power-off"></i>
           </button>
         </fading-message>
         <fading-message duration="-1" v-bind:trigger="visiblePauseButton">
-          <button class="reset-button clickable bigger" @click="pause">
+          <button class="bot-button clickable bigger" @click="pause">
             <span v-if="isPaused">
               <i class="fas fa-play"></i>
             </span>
@@ -272,13 +272,14 @@ export default {
 .even-bigger {
   font-size: 1.5em;
 }
-.reset-button {
+.bot-button {
   background-color: transparent;
   border: unset;
   padding: 0 0 0 0;
   transition: all 1s cubic-bezier(.4,0,.2,1);
+  font-size: 30px;
 }
-.reset-button:focus {
+.bot-button:focus {
   outline: none;
   color: #ffffff;
 }
