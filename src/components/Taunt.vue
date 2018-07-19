@@ -57,6 +57,6 @@ export default {
   margin-top: 5px;
 }
 .is-nice {
-  color: #ff9f54;
+  color: #ffb074;
 }
 </style>
