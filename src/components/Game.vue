@@ -56,7 +56,12 @@
         </fading-message>
         <fading-message duration="-1" v-bind:trigger="visiblePauseButton">
           <button class="reset-button clickable bigger" @click="pause">
-            <i class="fas fa-pause"></i>
+            <span v-if="isPaused">
+              <i class="fas fa-play"></i>
+            </span>
+            <span v-else>
+              <i class="fas fa-pause"></i>
+            </span>
           </button>
         </fading-message>
       </div>
@@ -76,6 +81,7 @@ export default {
   data () {
     return {
       ticker: null,
+      isPaused: false,
       elapsedTime: 0,
       step: 0,
       addedSeconds: 0,
@@ -106,7 +112,13 @@ export default {
   },
   methods: {
     pause () {
-
+      if (this.isPaused) {
+        this.startCountDown()
+      } else {
+        clearInterval(this.ticker)
+        this.ticker = null
+      }
+      this.isPaused = !this.isPaused
     },
     resetProgression () {
       this.hasResetted = true
