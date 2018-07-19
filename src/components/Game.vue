@@ -55,13 +55,9 @@
           </button>
         </fading-message>
         <fading-message duration="-1" v-bind:trigger="visiblePauseButton">
-          <button class="bot-button clickable bigger" @click="pause">
-            <span v-if="isPaused">
-              <i class="fas fa-play"></i>
-            </span>
-            <span v-else>
+          <button class="bot-button clickable bigger" @click="pause"
+                  :class="{ 'primary-text': isPaused }">
               <i class="fas fa-pause"></i>
-            </span>
           </button>
         </fading-message>
       </div>
