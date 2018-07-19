@@ -10,7 +10,7 @@
               <duration :amount="displayedElapsedTime" fallback="-"></duration>
             </div>
             <fading-message duration="-1" :trigger="visibleaddedSeconds">
-              <span class="amount-container">
+              <span class="amount-container primary-text">
                 <div class="icon"><i class="fas fa-plus"></i></div>
                 <duration :amount="addedSeconds" fallback="0 s"></duration>
               </span>

@@ -2,7 +2,7 @@
   <div class="bg-container">
     <div class="container">
       <div class="titles">
-        <h1><span class="highlight">Idle,</span> please</h1>
+        <h1><span class="highlight">Idle<span class="primary-text">,</span></span> please</h1>
         <div>The perfectly <span class="highlight">pointless</span> game</div>
       </div>
       <div class="game-container">

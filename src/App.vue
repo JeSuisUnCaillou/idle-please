@@ -19,4 +19,7 @@ html, body, #app, main {
 body {
   margin: 0;
 }
+.primary-text {
+  color: #fd7c44 !important;
+}
 </style>

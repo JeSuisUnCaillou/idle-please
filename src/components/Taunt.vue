@@ -1,7 +1,7 @@
 <template>
   <div>
     <fading-message class="message" v-for="(message, index) in strippedMessages" :key="index" :duration="duration" :trigger="trigger" :offset="subOffset(index)">
-      <span :class="{ 'is-nice': isNice(index) }">{{message}}</span>
+      <span :class="{ 'primary-text': isNice(index) }">{{message}}</span>
     </fading-message>
   </div>
 </template>
@@ -55,8 +55,5 @@ export default {
 <style scoped>
 .message {
   margin-top: 5px;
-}
-.is-nice {
-  color: #ffb074;
 }
 </style>
