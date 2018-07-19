@@ -237,6 +237,8 @@ export default {
 }
 .clickable {
   cursor: pointer;
+}
+.clickable, .game {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
