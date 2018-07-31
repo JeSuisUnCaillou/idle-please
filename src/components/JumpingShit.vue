@@ -1,20 +1,19 @@
 <template>
     <span class="jumping-shit highlight"
           :data-jumping="isJumping"
-          v-show="!isFinished"
           :style="{ transition: `transform ${duration}ms cubic-bezier(0,1,1,1.5), opacity ${duration}ms cubic-bezier(0,1,1,1.5)` }">
-      <span class="primary-text">+</span>1
+      <slot></slot>
     </span>
 </template>
 
 <script>
 export default {
   name: 'jumping-shit',
+  props: ['id'],
   data () {
     return {
       duration: 1000,
       isJumping: false,
-      isFinished: false,
       jumpingTimeout: null
     }
   },
@@ -24,8 +23,7 @@ export default {
         this.isJumping = true
         clearTimeout(this.jumpingTimeout)
         this.jumpingTimeout = setTimeout(() => {
-          this.isFinished = true
-          this.$emit('done')
+          this.$emit('done', this.id)
         }, this.duration)
       }, 0)
     }
