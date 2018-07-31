@@ -2,7 +2,7 @@
     <span class="jumping-shit highlight"
           :data-jumping="isJumping"
           v-show="!isFinished"
-          :style="{ transition: `transform ${duration}ms ease-in-out, opacity ${duration}ms ease-in-out` }">
+          :style="{ transition: `transform ${duration}ms cubic-bezier(0,1,1,1.5), opacity ${duration}ms cubic-bezier(0,1,1,1.5)` }">
       <span class="primary-text">+</span>1
     </span>
 </template>
@@ -12,7 +12,7 @@ export default {
   name: 'jumping-shit',
   data () {
     return {
-      duration: 200,
+      duration: 1000,
       isJumping: false,
       isFinished: false,
       jumpingTimeout: null
@@ -26,7 +26,7 @@ export default {
         this.jumpingTimeout = setTimeout(() => {
           this.isFinished = true
           this.$emit('done')
-        }, this.duration * 1.5)
+        }, this.duration)
       }, 0)
     }
   }
@@ -41,10 +41,10 @@ export default {
   position: absolute;
   opacity: 0;
   left: -27px;
-  transform: scale(0.5);
+  /* transform: scale(0.5); */
 }
 .jumping-shit[data-jumping] {
-  transform: translateY(-35px) scale(1);
+  transform: translateY(-35px);
   opacity: 1;
 }
 </style>
