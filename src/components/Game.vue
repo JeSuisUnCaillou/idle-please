@@ -40,8 +40,10 @@
       <div class="even-bigger">
         <animated-dots ref="animatedDots" nbDots="3" v-bind:invisibleDots="!visibleDots" v-bind:invisibleReverseDots="!visibleReverseDots" v-bind:duration="dotsDuration">
           Wait for
-          <jumping-shit ref="jumpingNumber"></jumping-shit>
-          <duration :amount="cooldown" fallback="it"></duration>
+          <duration :amount="cooldown" fallback="it">
+            <jumping-shit ref="jumpingNumber" slot="afterSeconds"></jumping-shit>
+          </duration>
+          
         </animated-dots>
       </div>
     </div>

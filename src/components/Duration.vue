@@ -25,10 +25,11 @@
           min
         </span>
       </span>
-      <span class="block" v-if="seconds > 0">
+      <span class="block">
         <span class="highlight">
           {{seconds}}
         </span>
+        <slot name="afterSeconds"></slot>
         <span>
           s
         </span>
