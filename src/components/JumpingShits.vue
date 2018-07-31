@@ -3,8 +3,7 @@
     <jumping-shit v-for="shit in shits"
                   @done="deleteShit"
                   :key="shit"
-                  :id="shit"
-                  :ref="`shit-${shit}`">
+                  :id="shit">
       <span class="primary-text">+</span>1
     </jumping-shit>
   </span>
@@ -31,9 +30,6 @@ export default {
     },
     jump () {
       this.addShit()
-      setTimeout(() => {
-        this.$refs[`shit-${this.shitId}`][0].jump()
-      }, 0)
     }
   }
 }

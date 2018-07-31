@@ -27,6 +27,9 @@ export default {
         }, this.duration)
       }, 0)
     }
+  },
+  mounted () {
+    this.jump()
   }
 }
 </script>
