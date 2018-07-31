@@ -3,7 +3,7 @@
     <span class="jumping-shit highlight"
           :data-jumping="isJumping"
           :style="{ transition: `transform ${fadeDuration}ms ease-in-out, opacity ${fadeDuration}ms ease-in-out` }">
-      +1
+      <span class="primary-text">+</span>1
     </span>
   </span>
 </template>
@@ -13,7 +13,7 @@ export default {
   name: 'jumping-shit',
   data () {
     return {
-      duration: 200,
+      duration: 100,
       fadeDuration: 0,
       isJumping: false,
       jumpingTimeout: null

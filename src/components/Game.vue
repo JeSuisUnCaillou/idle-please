@@ -43,7 +43,6 @@
           <duration :amount="cooldown" fallback="it">
             <jumping-shit ref="jumpingNumber" slot="afterSeconds"></jumping-shit>
           </duration>
-          
         </animated-dots>
       </div>
     </div>
