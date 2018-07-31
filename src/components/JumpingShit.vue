@@ -1,6 +1,7 @@
 <template>
     <span class="jumping-shit"
           :data-jumping="isJumping"
+          :data-invisible="isInvisible"
           :style="{ transition: `transform ${duration}ms cubic-bezier(0,1,1,1.5), opacity ${duration}ms cubic-bezier(0,0.5,0.5,1)` }">
       <slot></slot>
     </span>
@@ -14,6 +15,7 @@ export default {
     return {
       duration: 500,
       isJumping: false,
+      isInvisible: false,
       jumpingTimeout: null
     }
   },
@@ -23,7 +25,11 @@ export default {
         this.isJumping = true
         clearTimeout(this.jumpingTimeout)
         this.jumpingTimeout = setTimeout(() => {
-          this.$emit('done', this.id)
+          this.isInvisible = true
+          this.duration = 200
+          setTimeout(() => {
+            this.$emit('done', this.id)
+          }, this.duration)
         }, this.duration)
       }, 0)
     }
@@ -40,12 +46,15 @@ export default {
 }
 .jumping-shit {
   position: absolute;
-  opacity: 0;
   left: -35px;
   transform: scale(0.8);
+  opacity: 0;
 }
 .jumping-shit[data-jumping] {
   transform: translateY(-35px) scale(1);
   opacity: .9;
+}
+.jumping-shit[data-invisible] {
+  opacity: 0;
 }
 </style>
