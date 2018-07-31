@@ -1,6 +1,6 @@
 <template>
   <span class="relative-container">
-    <span class="jumping-shit"
+    <span class="jumping-shit highlight"
           :data-jumping="isJumping"
           :style="{ transition: `transform ${fadeDuration}ms ease-in-out, opacity ${fadeDuration}ms ease-in-out` }">
       +1
@@ -11,7 +11,6 @@
 <script>
 export default {
   name: 'jumping-shit',
-  props: ['shit'],
   data () {
     return {
       duration: 200,
@@ -45,10 +44,11 @@ export default {
 .jumping-shit {
   position: absolute;
   opacity: 0;
-  left: -34px;
+  left: -27px;
+  transform: scale(0.5);
 }
 .jumping-shit[data-jumping] {
-  transform: translateY(-50px);
+  transform: translateY(-50px) scale(1);
   opacity: 1;
 }
 </style>
