@@ -1,5 +1,5 @@
 <template>
-    <span class="jumping-shit highlight"
+    <span class="jumping-shit"
           :data-jumping="isJumping"
           :style="{ transition: `transform ${duration}ms cubic-bezier(0,1,1,1.5), opacity ${duration}ms cubic-bezier(0,1,1,1.5)` }">
       <slot></slot>
@@ -12,7 +12,7 @@ export default {
   props: ['id'],
   data () {
     return {
-      duration: 1000,
+      duration: 500,
       isJumping: false,
       jumpingTimeout: null
     }
@@ -41,11 +41,11 @@ export default {
 .jumping-shit {
   position: absolute;
   opacity: 0;
-  left: -27px;
-  /* transform: scale(0.5); */
+  left: -35px;
+  transform: scale(0.8);
 }
 .jumping-shit[data-jumping] {
-  transform: translateY(-35px);
+  transform: translateY(-35px) scale(1);
   opacity: 1;
 }
 </style>

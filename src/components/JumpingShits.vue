@@ -4,7 +4,7 @@
                   @done="deleteShit"
                   :key="shit"
                   :id="shit">
-      <span class="primary-text">+</span>1
+      <span class="primary-text">+</span><span class="highlight">1</span> s
     </jumping-shit>
   </span>
 </template>
