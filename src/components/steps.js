@@ -147,7 +147,7 @@ export default (game) => {
       }
     },
     50: () => {
-      game.taunt('Haha !', '#A pause button', 'Finally something useful.. ')
+      game.taunt('Haha !', 'A pause button', 'Finally something useful.. ')
     }
   }
 }
