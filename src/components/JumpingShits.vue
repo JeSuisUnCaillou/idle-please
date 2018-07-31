@@ -3,6 +3,7 @@
     <jumping-shit v-for="(shit, index) in shits"
                   @done="deleteShit(index)"
                   :key="index"
+                  v-if="shit"
                   :ref="`shit-${index}`">
     </jumping-shit>
   </span>
@@ -22,10 +23,11 @@ export default {
   methods: {
     addShit () {
       this.shitId += 1
-      this.$set(this.shits, this.shitId, 0)
+      this.$set(this.shits, this.shitId, true)
     },
     deleteShit () {
-
+      // this.$set(this.shits, this.shitId, false)
+      delete this.shits[this.shitId]
     },
     jump () {
       console.log('jump')

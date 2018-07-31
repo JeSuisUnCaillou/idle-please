@@ -12,7 +12,7 @@ export default {
   name: 'jumping-shit',
   data () {
     return {
-      duration: 100,
+      duration: 200,
       isJumping: false,
       isFinished: false,
       jumpingTimeout: null
@@ -20,13 +20,13 @@ export default {
   },
   methods: {
     jump () {
-      this.isJumping = false
       setTimeout(() => {
         this.isJumping = true
         clearTimeout(this.jumpingTimeout)
         this.jumpingTimeout = setTimeout(() => {
           this.isFinished = true
-        }, this.duration * 1.2)
+          this.$emit('done')
+        }, this.duration * 1.5)
       }, 0)
     }
   }
@@ -44,7 +44,7 @@ export default {
   transform: scale(0.5);
 }
 .jumping-shit[data-jumping] {
-  transform: translateY(-50px) scale(1);
+  transform: translateY(-35px) scale(1);
   opacity: 1;
 }
 </style>
