@@ -39,7 +39,9 @@
     <div class="center-bar">
       <div class="even-bigger">
         <animated-dots ref="animatedDots" nbDots="3" v-bind:invisibleDots="!visibleDots" v-bind:invisibleReverseDots="!visibleReverseDots" v-bind:duration="dotsDuration">
-          Wait for <duration :amount="cooldown" fallback="it"></duration>
+          Wait for
+          <jumping-shit ref="jumpingNumber"></jumping-shit>
+          <duration :amount="cooldown" fallback="it"></duration>
         </animated-dots>
       </div>
     </div>
@@ -70,10 +72,11 @@ import FadingMessage from './FadingMessage.vue'
 import Taunt from './Taunt.vue'
 import Duration from './Duration.vue'
 import AnimatedDots from './AnimatedDots.vue'
+import JumpingShit from './JumpingShit.vue'
 import steps from './steps.js'
 export default {
   name: 'game',
-  components: { FadingMessage, Taunt, Duration, AnimatedDots },
+  components: { FadingMessage, Taunt, Duration, AnimatedDots, JumpingShit },
   data () {
     return {
       ticker: null,
@@ -141,6 +144,7 @@ export default {
     },
     addOneSecond () {
       this.addedSeconds += 1
+      this.$refs.jumpingNumber.jump()
     },
     nextAmountToWait (givenStep) {
       return 5 + givenStep
