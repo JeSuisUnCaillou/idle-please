@@ -1,7 +1,7 @@
 <template>
     <span class="jumping-shit"
           :data-jumping="isJumping"
-          :style="{ transition: `transform ${duration}ms cubic-bezier(0,1,1,1.5), opacity ${duration}ms cubic-bezier(0,1,1,1.5)` }">
+          :style="{ transition: `transform ${duration}ms cubic-bezier(0,1,1,1.5), opacity ${duration}ms cubic-bezier(0,0.5,0.5,1)` }">
       <slot></slot>
     </span>
 </template>
@@ -46,6 +46,6 @@ export default {
 }
 .jumping-shit[data-jumping] {
   transform: translateY(-35px) scale(1);
-  opacity: 1;
+  opacity: .9;
 }
 </style>
