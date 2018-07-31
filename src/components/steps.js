@@ -138,6 +138,9 @@ export default (game) => {
     34: () => {
       game.taunt('Ok, show him the leaderboard.', '#YES !', '', '', '#sweet leaderboard', 'There is no leaderboard yet')
     },
+    39: () => {
+      game.taunt('I bet you want to know', 'if something happens', 'at level 50')
+    },
     49: () => {
       if (game.visiblePauseButton) {
         game.taunt('For your stubbornness,', 'you deserve a price.', '#Here, have a pause button.', 'It\'s already there', '#Crap')
