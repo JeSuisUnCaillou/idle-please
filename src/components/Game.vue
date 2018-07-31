@@ -41,7 +41,7 @@
         <animated-dots ref="animatedDots" nbDots="3" v-bind:invisibleDots="!visibleDots" v-bind:invisibleReverseDots="!visibleReverseDots" v-bind:duration="dotsDuration">
           Wait for
           <duration :amount="cooldown" fallback="it">
-            <jumping-shit ref="jumpingNumber" slot="afterSeconds"></jumping-shit>
+            <jumping-shits ref="jumpingNumber" slot="afterSeconds"></jumping-shits>
           </duration>
         </animated-dots>
       </div>
@@ -73,11 +73,11 @@ import FadingMessage from './FadingMessage.vue'
 import Taunt from './Taunt.vue'
 import Duration from './Duration.vue'
 import AnimatedDots from './AnimatedDots.vue'
-import JumpingShit from './JumpingShit.vue'
+import JumpingShits from './JumpingShits.vue'
 import steps from './steps.js'
 export default {
   name: 'game',
-  components: { FadingMessage, Taunt, Duration, AnimatedDots, JumpingShit },
+  components: { FadingMessage, Taunt, Duration, AnimatedDots, JumpingShits },
   data () {
     return {
       ticker: null,

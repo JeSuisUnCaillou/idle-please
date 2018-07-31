@@ -1,11 +1,10 @@
 <template>
-  <span class="relative-container">
     <span class="jumping-shit highlight"
           :data-jumping="isJumping"
-          :style="{ transition: `transform ${fadeDuration}ms ease-in-out, opacity ${fadeDuration}ms ease-in-out` }">
+          v-show="!isFinished"
+          :style="{ transition: `transform ${duration}ms ease-in-out, opacity ${duration}ms ease-in-out` }">
       <span class="primary-text">+</span>1
     </span>
-  </span>
 </template>
 
 <script>
@@ -14,23 +13,20 @@ export default {
   data () {
     return {
       duration: 100,
-      fadeDuration: 0,
       isJumping: false,
+      isFinished: false,
       jumpingTimeout: null
     }
   },
   methods: {
     jump () {
-      this.fadeDuration = 0
       this.isJumping = false
       setTimeout(() => {
-        this.fadeDuration = this.duration
         this.isJumping = true
         clearTimeout(this.jumpingTimeout)
         this.jumpingTimeout = setTimeout(() => {
-          this.fadeDuration = 0
-          this.isJumping = false
-        }, this.duration)
+          this.isFinished = true
+        }, this.duration * 1.2)
       }, 0)
     }
   }
