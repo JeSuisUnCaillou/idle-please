@@ -2,7 +2,7 @@
   <span class="relative-container">
     <span class="jumping-shit"
           :data-jumping="isJumping"
-          :style="{ transition: `transform ${duration}ms cubic-bezier(.4,0,.2,1), opacity ${duration}ms cubic-bezier(.4,0,.2,1)` }">
+          :style="{ transition: `transform ${fadeDuration}ms ease-in-out, opacity ${fadeDuration}ms ease-in-out` }">
       +1
     </span>
   </span>
@@ -14,19 +14,22 @@ export default {
   props: ['shit'],
   data () {
     return {
-      duration: 100,
+      duration: 200,
+      fadeDuration: 0,
       isJumping: false,
-      isVisible: false,
       jumpingTimeout: null
     }
   },
   methods: {
     jump () {
+      this.fadeDuration = 0
       this.isJumping = false
       setTimeout(() => {
+        this.fadeDuration = this.duration
         this.isJumping = true
         clearTimeout(this.jumpingTimeout)
         this.jumpingTimeout = setTimeout(() => {
+          this.fadeDuration = 0
           this.isJumping = false
         }, this.duration)
       }, 0)
@@ -42,9 +45,10 @@ export default {
 .jumping-shit {
   position: absolute;
   opacity: 0;
+  left: -34px;
 }
 .jumping-shit[data-jumping] {
-  transform: translateY(-30px);
+  transform: translateY(-50px);
   opacity: 1;
 }
 </style>
