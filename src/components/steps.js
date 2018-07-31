@@ -130,21 +130,24 @@ export default (game) => {
       game.taunt('Just...', 'Don\'t help the user like that', '#You\'re just wasting the user\'s time', 'Well, that is the point of the game.', 'Ain\'t it ?')
     },
     32: () => {
-      game.taunt('#You got me there.', 'I know', '#But there is so much more', '#In this game', 'Yes, and the user must find them', 'by himself')
+      game.taunt('#You got me there.', 'I know', '#But there is so much more', 'Yes, and the user must search', 'by himself')
     },
     33: () => {
       game.taunt('#Well I don\'t think so.', '#For instance, I think', '#the user should see the leaderboard')
     },
     34: () => {
-      game.taunt('Ok, show him the leaderboard.', '#YES !', '', '', '#sweet leaderboard', 'There is no leaderboard')
+      game.taunt('Ok, show him the leaderboard.', '#YES !', '', '', '#sweet leaderboard', 'There is no leaderboard yet')
     },
     49: () => {
       if (game.visiblePauseButton) {
-        game.taunt('#For your stubbornness,', '#you deserve a price.', '#Here, have a pause button.', 'It\'s already there', '#Crap')
+        game.taunt('For your stubbornness,', 'you deserve a price.', '#Here, have a pause button.', 'It\'s already there', '#Crap')
       } else {
-        game.taunt('#For your stubbornness,', '#you deserve a price.', '#Here, have a pause button.')
+        game.taunt('For your stubbornness,', 'you deserve a price.', '#Here, have a pause button.')
         game.visiblePauseButton = true
       }
+    },
+    50: () => {
+      game.taunt('Haha !', '#A pause button', 'Finally something useful.. ')
     }
   }
 }
