@@ -71,7 +71,7 @@ export default (game) => {
       if (game.addedSeconds > 0) {
         game.taunt('Let\'s see how many times you cheated', `#Oh not bad, ${game.addedSeconds} click${game.addedSeconds > 1 ? 's' : ''} !`)
       } else {
-        game.taunt('You didn\'t cheat once !', '#Try clicking top left')
+        game.taunt('You didn\'t cheat once !', '#Try clicking on the countdown')
       }
     },
     13: () => {
