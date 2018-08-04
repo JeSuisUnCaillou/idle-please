@@ -27,11 +27,11 @@ export default {
         this.jumpingTimeout = setTimeout(() => {
           this.isInvisible = true
           this.duration = 200
-          setTimeout(() => {
+          this.jumpingTimeout = setTimeout(() => {
             this.$emit('done', this.id)
           }, this.duration)
         }, this.duration)
-      }, 0)
+      }, 100)
     }
   },
   mounted () {
