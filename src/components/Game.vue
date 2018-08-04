@@ -3,7 +3,7 @@
     <div class="top-bar">
       <div class="dual-container">
         <fading-message duration="-1" v-bind:trigger="visibleElapsedTime">
-          <div class="elapsed-time-container clickable" @click="addOneSecond">
+          <div class="elapsed-time-container">
             <div class="bigger">Time wasted</div>
             <div class="amount-container">
               <div class="icon"><i class="fas fa-hourglass-end"></i></div>
@@ -36,7 +36,7 @@
         </div>
       </div>
     </div>
-    <div class="center-bar">
+    <div class="center-bar clickable" @click="addOneSecond">
       <div class="even-bigger">
         <animated-dots ref="animatedDots" nbDots="3" v-bind:invisibleDots="!visibleDots" v-bind:invisibleReverseDots="!visibleReverseDots" v-bind:duration="dotsDuration">
           Wait for
